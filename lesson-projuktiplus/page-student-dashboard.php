@@ -9,17 +9,7 @@ if ( ! is_user_logged_in() ) {
 }
 ?>
 <style>
-/* Style the header */
-header {
-  background-color: #666;
-  padding: 30px;
-  text-align: center;
-  font-size: 35px;
-  color: white;
-}
-
-/* Create two columns/boxes that floats next to each other */
-nav {
+.std-sidebar {
   float: left;
   width: 30%;
   height: 300px; /* only for demonstration, should be removed */
@@ -28,12 +18,12 @@ nav {
 }
 
 /* Style the list inside the menu */
-nav ul {
+.std-sidebar ul {
   list-style-type: none;
   padding: 0;
 }
 
-article {
+.std-data {
   float: left;
   padding: 20px;
   width: 70%;
@@ -48,44 +38,20 @@ section::after {
   clear: both;
 }
 
-/* Style the footer */
-footer {
-  background-color: #777;
-  padding: 10px;
-  text-align: center;
-  color: white;
-}
-
 /* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
 @media (max-width: 600px) {
-  nav, article {
+  .std-sidebar, .std-data {
     width: 100%;
     height: auto;
   }
 }
 </style>
 
-<body>
-
-
 <section>
-  <nav>
     <?php get_template_part('template-parts/student-dashboard/student', 'sidebar');?>
-    <ul>
-      <li><a href="#">London</a></li>
-      <li><a href="#">Paris</a></li>
-      <li><a href="#">Tokyo</a></li>
-    </ul>
-  </nav>
   
-  <article>
-    <h1>London</h1>
-    <p>London is the capital city of England. It is the most populous city in the  United Kingdom, with a metropolitan area of over 13 million inhabitants.</p>
-    <p>Standing on the River Thames, London has been a major settlement for two millennia, its history going back to its founding by the Romans, who named it Londinium.</p>
-  </article>
-</section>
-
-<div class="student-sidebar-tab student-active student-dashboard-main" id="dashboard">'
+  <article class="std-data">
+    <div class="student-sidebar-tab student-active student-dashboard-main" id="dashboard">'
     <?php get_template_part('template-parts/student-dashboard/student', 'dashboard'); ?>
 
 </div>';
@@ -95,8 +61,8 @@ footer {
 <div class="student-sidebar-tab" id="enrollments">
     <?php get_template_part('template-parts/student-dashboard/student', 'enrollemts'); ?>
 </div>
-</div>
-</div>
+  </article>
+</section>
 
 <?php
 get_footer(); ?>
