@@ -280,7 +280,6 @@ $title = get_the_title();
 
 <?php 
 comment_form([
-    'id_form' => 'ajax-comment-form',
     'fields' => [
         'author' => '<div class="form-row">
             <input type="text" id="author" name="author" placeholder="Your Name"> </div>',
@@ -289,7 +288,9 @@ comment_form([
            ],
 
     'comment_field' => '<div class="form-row">
-            <textarea id="comment" name="comment" placeholder="Your Comment"> </textarea> </div>',
+            <textarea id="comment" name="comment" placeholder="Your Comment"> </textarea>
+            <input type="hidden" name="comment_post_ID" value="' . get_the_ID() . '">
+            </div>',
             'class_submit' => 'comment-button',
             'id_submit'    => 'comment_submit_btn',
             'label_submit' => 'Post Comment'

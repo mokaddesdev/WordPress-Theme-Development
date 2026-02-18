@@ -390,14 +390,6 @@ add_action( 'lessonlms_send_reset_password_email', 'lessonlms_send_reset_passwor
 add_filter( 'send_password_change_email', '__return_false' );
 add_filter( 'send_email_change_email', '__return_false' );
 
-// Login Function
-add_filter('login_errors', function ($error) {
-    if ( empty($error) ) return $error;
-
-    return '<span class="wp-login-error" data-error="' . esc_attr(strip_tags($error)) . '"></span>';
-});
-
-
 // Disable default registration email
 add_filter( 'wp_new_user_notification_email', '__return_false' );
 add_filter( 'wp_new_user_notification_email_admin', '__return_false' );

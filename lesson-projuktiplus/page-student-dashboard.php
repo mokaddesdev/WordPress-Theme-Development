@@ -7,6 +7,7 @@ if ( ! is_user_logged_in() ) {
     wp_redirect(  wp_login_url() );
     exit;
 }
+$path = 'template-parts/student-dashboard/';
 ?>
 <style>
 .std-sidebar {
@@ -38,7 +39,6 @@ section::after {
   clear: both;
 }
 
-/* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
 @media (max-width: 600px) {
   .std-sidebar, .std-data {
     width: 100%;
@@ -48,18 +48,18 @@ section::after {
 </style>
 
 <section>
-    <?php get_template_part('template-parts/student-dashboard/student', 'sidebar');?>
+    <?php get_template_part( $path . 'sidebar');?>
   
   <article class="std-data">
-    <div class="student-sidebar-tab student-active student-dashboard-main" id="dashboard">'
-    <?php get_template_part('template-parts/student-dashboard/student', 'dashboard'); ?>
+    <div class="std-sidebar-tab student-active student-dashboard-main" id="dashboard">'
+    <?php get_template_part( $path . 'dashboard'); ?>
 
 </div>';
-<div class="student-sidebar-tab" id="profile">
-    <?php get_template_part('template-parts/student-dashboard/student', 'profile'); ?>
+<div class="std-sidebar-tab" id="profile">
+    <?php get_template_part( $path . 'profile'); ?>
 </div>
-<div class="student-sidebar-tab" id="enrollments">
-    <?php get_template_part('template-parts/student-dashboard/student', 'enrollemts'); ?>
+<div class="std-sidebar-tab" id="enrollments">
+    <?php get_template_part( $path . 'enroll-course'); ?>
 </div>
   </article>
 </section>
