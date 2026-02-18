@@ -101,7 +101,7 @@ $footer_phone_des   = get_theme_mod( 'footer_phone_description', '+ 000 1234 567
                 <div class="address-details email">
                     <a href="mailto:<?php echo esc_html( $footer_email ); ?>">
                         <span>
-                            <?php if( $footer_email_title ) :?>
+                            <?php if( $footer_email_title ) : ?>
                             <strong>
                                 <?php echo esc_html( $footer_email_title );?>
                             </strong>

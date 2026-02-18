@@ -16,13 +16,13 @@
             <div class="header-wrapper">
                 <!----- logo ----->
                 <div class="logo">
-                    <?php if ( has_custom_logo() ): ?>
-                    <?php the_custom_logo(); ?>
+                    <?php if (has_custom_logo()): ?>
+                        <?php the_custom_logo(); ?>
                     <?php else : ?>
-                    <a href="<?php echo esc_url( home_url( '/' ) ); ?>">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/header-logo.png"
-                            alt="<?php echo esc_attr( get_bloginfo( 'name' ) ) ?>" />
-                    </a>
+                        <a href="<?php echo esc_url(home_url('/')); ?>">
+                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/header-logo.png"
+                                alt="<?php echo esc_attr(get_bloginfo('name')) ?>" />
+                        </a>
                     <?php endif; ?>
                 </div>
 
@@ -30,7 +30,7 @@
                 <div class="menu-button-wrapper">
                     <nav class="main-menu">
                         <?php
-                        wp_nav_menu( array(
+                        wp_nav_menu(array(
                             'theme_location' => 'header_menu',
                             'container'      => false,
                             'menu_class'     => '',
@@ -45,9 +45,9 @@
                         $user_dashboard = home_url('/student-dashboard');
                         if ($user_login) :
                         ?>
-                        <a href="<?php echo esc_url( $user_dashboard ); ?>"> Dashboard </a>
+                            <a href="<?php echo esc_url($user_dashboard); ?>"> Dashboard </a>
                         <?php else : ?>
-                        <a href="<?php echo esc_url( wp_registration_url() ); ?>">Sign Up</a>
+                            <a href="<?php echo esc_url(wp_registration_url()); ?>">Sign Up</a>
                         <?php endif; ?>
                     </div>
 
@@ -67,13 +67,13 @@
                     <!----- logo ----->
                     <div class="logo-div">
                         <div class="logo">
-                            <?php if ( has_custom_logo() ) : ?>
-                            <?php the_custom_logo(); ?>
+                            <?php if (has_custom_logo()) : ?>
+                                <?php the_custom_logo(); ?>
                             <?php else: ?>
-                            <a href="<?php echo esc_url( home_url('/') ); ?>">
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/header-logo.png"
-                                    alt="<?php echo esc_attr( get_bloginfo( 'name' ) ) ?>" />
-                            </a>
+                                <a href="<?php echo esc_url(home_url('/')); ?>">
+                                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/header-logo.png"
+                                        alt="<?php echo esc_attr(get_bloginfo('name')) ?>" />
+                                </a>
                             <?php endif; ?>
                         </div>
 
@@ -89,10 +89,10 @@
                     <div class="menu-div">
                         <nav class="main-menu-phone">
                             <?php
-                            wp_nav_menu( array(
+                            wp_nav_menu(array(
                                 'theme_location' => 'mobile_menu',
                                 'fallback_cb'    => false,
-                            ) );
+                            ));
                             ?>
                         </nav>
                     </div>

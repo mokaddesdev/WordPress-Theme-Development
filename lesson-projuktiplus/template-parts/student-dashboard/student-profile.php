@@ -5,11 +5,13 @@
  * @package lessonlms
  *
  */
+$current_user = get_current_user_id();
+if ( ! $current_user ) {
+    exit;
+}
 ?>
-
 <div>
 <form method="post" class="student-change-password-form">
-
     <p>
         <label for="current_password"><?php esc_html_e('Current Password', 'lessonlms'); ?></label>
         <input type="password" name="current_password" id="current_password" required>
