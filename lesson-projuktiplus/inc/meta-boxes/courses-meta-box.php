@@ -90,6 +90,47 @@ function lessonlms_courses_featured_callback($post){
     </div>
     <?php
 }
+// Add meta box
+add_action('add_meta_boxes', function() {
+    add_meta_box(
+        'course_product',
+        'Select Course Product',
+        'course_product_callback',
+        'courses',
+        'side'
+    );
+});
+
+function course_product_callback($post) {
+    wp_nonce_field('save_course_product', 'course_product_nonce');
+
+    $products = get_posts([
+        'post_type' => 'product',
+        'numberposts' => -1
+    ]);
+
+    $selected = get_post_meta($post->ID, '_course_product', true);
+
+    echo '<select name="course_product" style="width:100%">';
+    echo '<option value="">Select Product</option>';
+    foreach ($products as $product) {
+        echo '<option value="'.esc_attr($product->ID).'" '.selected($selected, $product->ID, false).'>'.esc_html($product->post_title).'</option>';
+    }
+    echo '</select>';
+}
+
+// Save meta box value
+add_action('save_post', function($post_id) {
+
+    if(get_post_type($post_id) !== 'courses') return;
+    if(defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
+    if(!isset($_POST['course_product_nonce']) || !wp_verify_nonce($_POST['course_product_nonce'], 'save_course_product')) return;
+    if(!current_user_can('edit_post', $post_id)) return;
+
+    if(isset($_POST['course_product'])){
+        update_post_meta($post_id, '_course_product', sanitize_text_field($_POST['course_product']));
+    }
+});
 
 /**
  * Save Featured Courses Meta

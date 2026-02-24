@@ -12,7 +12,7 @@ $path = 'template-parts/student-dashboard/';
 <style>
 .std-sidebar {
   float: left;
-  width: 30%;
+  width: 15%;
   height: 300px; /* only for demonstration, should be removed */
   background: #ccc;
   padding: 20px;
@@ -24,10 +24,30 @@ $path = 'template-parts/student-dashboard/';
   padding: 0;
 }
 
+.std-sidebar ul li{
+  cursor: pointer;
+  padding: 10px;
+}
+
+.std-sidebar ul li:hover{
+  color: black;
+  background-color: aquamarine;
+  padding: 10px;
+  border-radius: 20px;  
+  cursor: pointer;
+}
+.side-tab-active{
+  color: black;
+  background-color: aquamarine;
+  padding: 10px;
+  border-radius: 20px;  
+  cursor: pointer;
+}
+
 .std-data {
   float: left;
   padding: 20px;
-  width: 70%;
+  width: 85%;
   background-color: #f1f1f1;
   height: 300px; /* only for demonstration, should be removed */
 }
@@ -45,23 +65,17 @@ section::after {
     height: auto;
   }
 }
+  #dashboard{
+        background-color: white;
+        height: 300px;
+        width: 85%;
+    }
 </style>
-
 <section>
     <?php get_template_part( $path . 'sidebar');?>
-  
-  <article class="std-data">
-    <div class="std-sidebar-tab student-active student-dashboard-main" id="dashboard">'
     <?php get_template_part( $path . 'dashboard'); ?>
-
-</div>';
-<div class="std-sidebar-tab" id="profile">
     <?php get_template_part( $path . 'profile'); ?>
-</div>
-<div class="std-sidebar-tab" id="enrollments">
     <?php get_template_part( $path . 'enroll-course'); ?>
-</div>
-  </article>
 </section>
 
 <?php

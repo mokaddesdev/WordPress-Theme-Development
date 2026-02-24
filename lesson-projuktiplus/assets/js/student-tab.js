@@ -1,18 +1,18 @@
 jQuery(document).ready(function ($) {
   const $menuItem = $(".std-side-menu li[data-sidetab]");
-  const $tabs = $(".std-sidebar-tab");
   $menuItem.on("click", function () {
-    const tab = $(this).data("sidetab");
-    const target = $("#" + tab);
-    if ($target.hasClass("student-active")) {
+    const hasClass = $(this).hasClass('side-tab-active');
+    if ( hasClass ) {
       return;
     }
-    $(".std-side-menu li").removeClass("active-menu");
-    $(this).addClass("active-menu");
+    let activeTab = $('side-tab-active').attr('data-sidetab');
+    $('side-tab-active').removeClass( 'side-tab-active' );
+     $(`tab-content=${activeTab}`).hide();
 
-    $(".student-sidebar-tab").removeClass("student-active");
-    $("#" + tab).addClass("student-active");
-
+    let tabClick = $(this).attr("data-sidetab");
+    $(this).addClass( 'side-tab-active' );
+    $(`tab-content=${tabClick}`).show();
+    
     $.ajax({
       url: studentDashboard.ajaxurl,
       type: "POST",

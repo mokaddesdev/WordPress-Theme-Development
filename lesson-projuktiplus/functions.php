@@ -45,6 +45,7 @@ add_action( 'login_footer', 'lessonlms_login_footer' );
 
     // Customizer
     include_once $theme_dir . '/inc/customizer.php';
+     include_once $theme_dir . '/inc/customizer.php';
 
     // Customer registration
     // include_once $theme_dir . '/inc/admin/customer-user-register.php';

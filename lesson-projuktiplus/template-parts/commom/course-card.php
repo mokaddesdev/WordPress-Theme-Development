@@ -25,6 +25,10 @@
             )
         );
     }
+//     echo '<pre>';
+// var_dump($single_id);
+// var_dump(get_post_meta($single_id));
+// echo '</pre>';
 ?>
 
 <div class="course">
@@ -50,14 +54,49 @@
         </div>
 
         <p><?php echo esc_html( $course_descrip ); ?></p>
+        <?php
+// $single_id  = get_the_ID();
+// $product_id = get_post_meta( $single_id, '_course_product', true );
 
+// if ( $product_id && class_exists( 'WooCommerce' ) ) :
+
+//     $product = wc_get_product( $product_id );
+
+//     if ( $product && $product->is_purchasable() ) :
+
+//         echo sprintf(
+//             '<a href="%s" data-quantity="1" class="button add_to_cart_button ajax_add_to_cart" data-product_id="%s" data-product_sku="%s" aria-label="%s" rel="nofollow">%s</a>',
+//             esc_url( $product->add_to_cart_url() ),
+//             esc_attr( $product_id ),
+//             esc_attr( $product->get_sku() ),
+//             esc_attr( $product->add_to_cart_description() ),
+//             esc_html( $product->add_to_cart_text() )
+//         );
+
+//     endif;
+
+// endif;
+?>
         <!-- price & button -->
         <div class="price-btn">
-            <span class="price">$<?php echo esc_html( $price ); ?></span>
+           <?php
+$single_id  = get_the_ID();
+$product_id = get_post_meta( $single_id, '_course_product', true );
+
+if ( $product_id ) {
+
+    $price = get_post_meta( $product_id, '_price', true );
+
+    if ( $price !== '' ) {
+        echo '<span class="price">$' . esc_html( $price ) . '</span>';
+    }
+}
+?>
             <div class="black-btn book-now">
                 <a href="<?php echo esc_url( $permalink ); ?>">
                     <?php echo esc_html__( 'Book Now', 'lessonlms' ); ?>
                 </a>
+                
             </div>
         </div>
     </div>
