@@ -1,0 +1,247 @@
+
+    /* --------------------- LAYOUT WRAPPER --------------------- */
+.student-dashboard-wrapper{
+    display:flex;
+    width:100%;
+    max-height:100vh;
+}
+
+/* --------------------- LEFT SIDEBAR --------------------- */
+.dashboard-left-sidebar{
+    width:30%;
+    background:#1a1d26;
+    color:white;
+    padding:25px 0;
+}
+
+.sidebar-menu-title{
+    text-align:center;
+    font-size:25px;
+    margin-bottom:25px;
+    letter-spacing:1px;
+    font-weight:600;
+}
+
+.sidebar-menu-items{
+    list-style:none;
+    padding:0;
+    margin:0;
+}
+
+.sidebar-menu-items li{
+    padding:15px 25px;
+    font-size:17px;
+    font-weight:500;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    transition:0.3s;
+}
+
+.sidebar-menu-items li:hover,
+.sidebar-menu-items li.active{
+    background:#ff7b00;
+}
+
+/* --------------------- TOPBAR --------------------- */
+.student-dashboard-topbar{
+    margin-left:20px;
+    background:white;
+    padding:18px 25px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid #e5e5e5;
+}
+
+.topbar-breadcrumb{
+    font-size:16px;
+    color:#444;
+    font-weight:500;
+}
+
+.topbar-breadcrumb i{
+    margin:0 6px;
+}
+
+.topbar-user-icon{
+    font-size:22px;
+    color:#000;
+}
+
+/* --------------------- MAIN CONTENT --------------------- */
+.student-dashboard-main{
+    margin-left:20px;
+    padding:30px;
+}
+
+.dashboard-heading{
+    font-size:28px;
+    font-weight:600;
+    margin-bottom:25px;
+}
+
+/* --------------------- DASHBOARD CARDS --------------------- */
+.dashboard-cards-grid{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap:25px;
+}
+
+.dashboard-card-box{
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    text-align:center;
+    box-shadow:0 2px 8px rgba(0,0,0,0.08);
+}
+
+.dashboard-card-title{
+    font-size:18px;
+    font-weight:600;
+    color:#555;
+    margin-bottom:10px;
+}
+
+.dashboard-card-number{
+    font-size:32px;
+    font-weight:700;
+    margin-bottom:15px;
+    color:#000;
+}
+
+/* Button */
+.dashboard-view-course-btn{
+    padding:10px 20px;
+    background:#ff7b00;
+    color:white;
+    font-size:15px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:500;
+    transition:0.3s;
+}
+
+.dashboard-view-course-btn:hover{
+    opacity:0.8;
+}
+
+/* --------------------- RESPONSIVE --------------------- */
+@media (max-width:900px){
+    .dashboard-cards-grid{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width:700px){
+    .dashboard-left-sidebar{
+        position:relative;
+        width:100%;
+        height:auto;
+    }
+    .student-dashboard-topbar,
+    .student-dashboard-main{
+        margin-left:0;
+    }
+}
+
+@media (max-width:500px){
+    .dashboard-cards-grid{
+        grid-template-columns:1fr;
+    }
+}
+
+.sidebar-menu-items li a{
+    color:white;
+    text-decoration:none;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    width:100%;
+}
+
+.sidebar-menu-items li:hover,
+.sidebar-menu-items li.active{
+    background:#ff7b00;
+}
+
+
+.student-enrollment-section-wrapper{
+    padding: 60px 30px;
+    background: #f4f6fb;
+}
+
+.student-enrollment-card-grid{
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+
+.student-enrollment-card-item{
+    background: #ffffff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 12px 35px rgba(0,0,0,0.08);
+    transition: all 0.35s ease;
+}
+
+.student-enrollment-card-item:hover{
+    transform: translateY(-8px);
+}
+
+.student-enrollment-card-image img{
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.student-enrollment-card-content{
+    padding: 25px;
+}
+
+.student-enrollment-course-title{
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #222;
+}
+
+.student-enrollment-date{
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 18px;
+}
+
+.student-enrollment-start-learning-btn{
+    display: inline-block;
+    padding: 12px 22px;
+    background: linear-gradient(135deg, #ff7a18, #ff3d00);
+    color: #fff;
+    font-size: 14px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.student-enrollment-start-learning-btn:hover{
+    background: linear-gradient(135deg, #ff3d00, #ff7a18);
+}
+
+/* Responsive */
+@media (max-width: 991px){
+    .student-enrollment-card-grid{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 575px){
+    .student-enrollment-card-grid{
+        grid-template-columns: 1fr;
+    }
+}
+
+

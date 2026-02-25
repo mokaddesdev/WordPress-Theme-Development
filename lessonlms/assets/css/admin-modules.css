@@ -1,0 +1,300 @@
+.lessonlms-wrap {
+    max-width: 95%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    background: #fff;
+}
+.course-module-form {
+    width: 35%;
+    background: #fff;
+    padding: 25px 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    margin-bottom: 40px;
+    transition: all 0.3s ease;
+}
+
+.course-module-form h2 {
+    margin-bottom: 20px;
+    font-size: 1.7em;
+    color: #2c3e50;
+    border-bottom: 2px solid #f447fa;
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+.course-module-form p {
+    margin-bottom: 15px;
+}
+
+.course-module-form label {
+    font-weight: 500;
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.course-module-form input[type="text"],
+.course-module-form select {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 1em;
+    margin-bottom: 12px;
+    transition: border 0.3s ease;
+}
+
+.course-module-form input[type="text"]:focus,
+.course-module-form select:focus {
+    outline: none;
+    border-color: #f39703;
+}
+
+.course-module-form input[type="checkbox"] {
+    margin-right: 8px;
+    accent-color: #f89a02;
+}
+
+.course-module-form button {
+    background: #f39c12;
+    color: #fff;
+    padding: 10px 22px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.course-module-form button:hover {
+    background: #e67e22;
+}
+
+/* ===============================
+   Modules Table Section
+=============================== */
+#course-modules-table-wrapper {
+    width: 65%;
+}
+
+.modules-lists {
+    background: #fff;
+    padding: 25px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.modules-lists h2 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    color: #2c3e50;
+    border-bottom: 2px solid  #f447fa;;
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+.modules-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95em;
+}
+
+.modules-table th,
+.modules-table td {
+    padding: 12px 15px;
+    text-align: left;
+}
+
+.table-course-list{
+    width: 50%;
+}
+.module-name-count{
+    text-align: center;
+}
+.modules-table th {
+    background: #697ffc;
+    color: #fff;
+    font-weight: 600;
+}
+
+.modules-table tr:nth-child(even) {
+    background: #f9f9f9;
+}
+
+.modules-table tr:hover {
+    background: #f1f1f1;
+}
+
+.modules-table td a {
+    color: #2980b9;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.modules-table td a:hover {
+    color: #1c5980;
+}
+
+/* ===============================
+   Loading Indicator
+=============================== */
+.lessonlms-loading {
+    text-align: center;
+    padding: 20px;
+    font-size: 1.1em;
+    color: #f39c12;
+    font-weight: 600;
+}
+
+/* ===============================
+   Messages
+=============================== */
+.lessonlms-message {
+    position: fixed;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 16px;
+    background: #4CAF50;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: none;
+    z-index: 9999;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.lessonlms-message.error {
+    position: fixed;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 16px;
+    background: rgb(233, 81, 81);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: none;
+    z-index: 9999;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+/* ===============================
+   Back Button
+=============================== */
+.lessonlms-back-btn {
+    margin: 20px 0;
+    display: inline-block;
+    background-color: #f39c12;
+    color: #fff;
+    padding: 10px 22px;
+    border-radius: 6px;
+    font-size: 1em;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+
+.lessonlms-back-btn:hover {
+    background-color: #e67e22;
+    color: #fff;
+    text-decoration: none;
+}
+
+.lessonlms-back-btn a {
+    color: #fff;
+    text-decoration: none;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+}
+.lessonlms-back-btn a:focus,
+.lessonlms-back-btn:focus {
+    outline: none;
+    box-shadow: none;
+}
+.module-name-list{
+    width: 50%;
+}
+
+/* Status Badge */
+.lessonlms-status {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 6px;
+    color: #fff;
+    font-weight: 500;
+    text-transform: capitalize;
+    font-size: 0.9em;
+}
+
+.lessonlms-status.enabled {
+    background-color: #28a745;
+}
+
+.lessonlms-status.disabled {
+    background-color: #e74c3c;
+}
+/* ===============================
+   LessonLMS Table Buttons
+=============================== */
+.lessonlms-edit,
+.lessonlms-delete {
+    padding: 6px 16px;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.9em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #fff;
+    margin-right: 6px;
+    outline: none;
+}
+
+.lessonlms-edit {
+    background-color: #3498db; /* Blue */
+}
+
+.lessonlms-edit:hover {
+    background-color: #2980b9;
+}
+
+.lessonlms-edit:active {
+    transform: scale(0.97);
+}
+
+.lessonlms-delete {
+    background-color: #e74c3c; /* Red */
+}
+
+.lessonlms-delete:hover {
+    background-color: #c0392b;
+}
+
+.lessonlms-delete:active {
+    transform: scale(0.97);
+}
+
+/* Optional: Responsive smaller buttons on mobile */
+@media (max-width: 768px) {
+    .lessonlms-edit,
+    .lessonlms-delete {
+        padding: 5px 12px;
+        font-size: 0.85em;
+        margin-bottom: 4px;
+    }
+}
+
+
+

@@ -1,0 +1,189 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;1,400&family=Sen:wght@700&display=swap');
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  background-color: #FFFFFF;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Sen", sans-serif;
+}
+
+a,
+span {
+  display: inline-block;
+  color: inherit;
+}
+
+svg {
+  display: inline-block;
+}
+
+.container {
+  max-width: 1170px;
+  margin: 0 auto;
+}
+.yellow-bg-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #FFB900;
+  color: #FFF;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+.hidden{
+  visibility: hidden;
+}
+.green-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #4CAF4F;
+  color: #FFF;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.black-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #171100;
+  color: #FFF;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+.button.btn-black{
+  border: none;
+  background: none;
+}
+
+/*----- btn hover effect -----*/
+.yellow-bg-btn::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #171100;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: all 0.3s;
+  z-index: -2;
+}
+
+.green-btn::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #FFB900;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: all 0.3s;
+  z-index: -2;
+}
+
+.black-btn::after {
+  content: '';
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background-color: #FFB900;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: all 0.3s;
+  z-index: -2;
+}
+
+.yellow-bg-btn:hover::after,
+.black-btn:hover::after {
+  transform: scaleX(1);
+}
+
+
+.common-heading {
+  color: #130606;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 126.316%;
+  letter-spacing: -0.76px;
+}
+
+.common-paragraph{
+  color: #696262;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 175%;
+  padding: 5px 0px;
+}
+
+.common-heading-two{
+  color: #171100;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 166.667%;
+}
+
+/* scroll button */
+.scroll-top-btn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: rgb(255, 185, 0);
+  color: black;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  z-index: 999;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.3s ease,
+  transform 0.3s ease;
+  opacity: 0;
+  pointer-events: none;
+  padding: 10px;
+}
+
+.scroll-top-btn.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.scroll-top-btn svg {
+  color: white;
+}
+
+
+
+

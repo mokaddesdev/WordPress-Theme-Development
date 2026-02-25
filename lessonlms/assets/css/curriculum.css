@@ -1,0 +1,208 @@
+
+
+
+   /* MAIN CARD WRAPPER */
+    .course-structure-main-wrapper{
+      max-width:980px;
+      margin:0 auto;
+      background:#fff;
+      border-radius:14px;
+      box-shadow:0 8px 30px rgba(13,38,59,.10);
+      overflow:hidden;
+    }
+
+    /* HEADER */
+    .course-structure-header-section{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:22px 26px;
+      border-bottom:1px solid #e9eef4;
+    }
+
+    .course-structure-title-wrapper{
+      display:flex;
+      gap:18px;
+      align-items:center;
+    }
+
+    .course-structure-badge-label{
+      background:#0ea5a4;
+      color:#fff;
+      padding:9px 14px;
+      border-radius:10px;
+      font-weight:700;
+    }
+
+    .course-structure-top-meta{
+      font-size:14px;
+      color:#475569;
+    }
+
+    /* NAVIGATION ARROWS */
+    .course-structure-navigation-arrows{
+      display:flex;
+      gap:10px;
+    }
+    .course-structure-nav-button{
+      width:42px;
+      height:42px;
+      border:none;
+      border-radius:10px;
+      background:#f1f5f9;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:20px;
+      cursor:pointer;
+    }
+
+    /* MODULE WRAPPER */
+    .course-structure-modules-wrapper{
+      padding:20px;
+    }
+
+    /* MODULE BLOCK */
+    .course-structure-module-block{
+      background:linear-gradient(180deg,#ffffff,#f9fbff);
+      border:1px solid #e6edf4;
+      border-radius:12px;
+      margin-bottom:14px;
+      padding:14px;
+    }
+
+    .course-structure-module-header{
+      display:flex;
+      justify-content:space-between;
+      cursor:pointer;
+      align-items:center;
+    }
+
+    .course-structure-module-left{
+      display:flex;
+      gap:14px;
+      align-items:center;
+    }
+
+    .course-structure-module-icon-box{
+      width:56px;
+      height:56px;
+      border-radius:12px;
+      background:linear-gradient(135deg,#06b6d4,#3b82f6);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#fff;
+      font-weight:700;
+      font-size:18px;
+    }
+
+    .course-structure-module-information h4{
+      font-size:17px;
+      margin:0;
+    }
+
+    .course-structure-module-information p{
+      font-size:13px;
+      margin:0;
+      color:#64748b;
+    }
+
+    .course-structure-chevron-icon{
+      transition:.3s;
+      font-size:22px;
+    }
+
+    .course-structure-module-block.open .course-structure-chevron-icon{
+      transform:rotate(90deg);
+    }
+
+    /* LECTURE LIST */
+    .course-structure-lecture-list{
+      margin-top:14px;
+      padding-top:14px;
+      border-top:1px dashed #e6edf4;
+      display:none;
+    }
+
+    /* SINGLE LECTURE ITEM */
+    .course-structure-lecture-item{
+      display:flex;
+      justify-content:space-between;
+      padding:12px;
+      border-radius:10px;
+      background:#fff;
+    }
+
+    .course-structure-lecture-left-side{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      flex:1;
+    }
+
+    .course-structure-video-thumbnail{
+      width:58px;
+      height:42px;
+      border-radius:8px;
+      background:#e3eafb;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:700;
+      color:#0b3a66;
+      flex:0 0 58px;
+    }
+
+    .course-structure-lecture-body-text{
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+    }
+
+    .course-structure-lecture-title{
+      font-size:15px;
+      font-weight:700;
+    }
+
+    .course-structure-lecture-meta{
+      color:#64748b;
+      font-size:13px;
+    }
+
+    .course-structure-lecture-action-buttons{
+      display:flex;
+      gap:12px;
+      align-items:center;
+    }
+
+    .course-structure-preview-button{
+      background:#0ea5a4;
+      color:#fff;
+      border:none;
+      border-radius:8px;
+      padding:7px 12px;
+      font-size:13px;
+      cursor:pointer;
+      font-weight:600;
+    }
+
+    .course-structure-time-label{
+      background:#f8fafc;
+      padding:6px 9px;
+      border-radius:6px;
+      font-size:13px;
+      color:#475569;
+    }
+
+    /* RESPONSIVE */
+    @media(max-width:640px){
+      .course-structure-lecture-item{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+      .course-structure-lecture-action-buttons{
+        margin-top:10px;
+      }
+    }
+

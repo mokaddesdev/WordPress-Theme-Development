@@ -1,0 +1,170 @@
+/* ===============================
+   GLOBAL VARIABLES
+================================ */
+:root {
+  --primary: #f59e0b;        /* orange */
+  --primary-dark: #d97706;
+  --text-dark: #1f2937;
+  --text-light: #6b7280;
+  --border-color: #e5e7eb;
+  --bg-light: #ffffff;
+  --bg-soft: #f9fafb;
+  --radius: 10px;
+  --transition: all 0.3s ease;
+}
+
+/* ===============================
+   ALL COURSES SECTION
+================================ */
+.all-courses-section {
+  padding: 80px 0;
+  background: var(--bg-soft);
+}
+
+.all-courses-section .container {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 30px;
+  align-items: flex-start;
+}
+
+/* ===============================
+   LEFT SIDEBAR
+================================ */
+.all-courses-left-side {
+  /* position: sticky;
+  top: 100px; */
+  /* position: fixed; */
+}
+
+.all-courses-sidebar {
+  background: var(--bg-light);
+  border-radius: var(--radius);
+  padding: 25px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+}
+
+/* ===============================
+   SIDEBAR BLOCK
+================================ */
+.all-courses-filter {
+  margin-bottom: 35px;
+}
+
+.all-courses-filter:last-child {
+  margin-bottom: 0;
+}
+
+/* ===============================
+   SIDEBAR LIST
+================================ */
+.all-courses-sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.all-courses-sidebar li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0;
+}
+
+/* ===============================
+   CUSTOM CHECKBOX
+================================ */
+.all-courses-sidebar input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--border-color);
+  border-radius: 4px;
+  cursor: pointer;
+  position: relative;
+  transition: var(--transition);
+}
+
+.all-courses-sidebar input[type="checkbox"]:hover {
+  border-color: var(--primary);
+}
+
+.all-courses-sidebar input[type="checkbox"]:checked {
+  background: var(--primary);
+  border-color: var(--primary);
+}
+
+.all-courses-sidebar input[type="checkbox"]:checked::after {
+  content: "✔";
+  position: absolute;
+  color: #fff;
+  font-size: 12px;
+  left: 3px;
+  top: -1px;
+}
+
+/* ===============================
+   LABEL
+================================ */
+.all-courses-sidebar label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-light);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.all-courses-sidebar li:hover label {
+  color: var(--primary);
+}
+
+/* ===============================
+   RESPONSIVE
+================================ */
+@media (max-width: 1024px) {
+  .all-courses-section .container {
+    grid-template-columns: 260px 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .all-courses-section .container {
+    grid-template-columns: 1fr;
+  }
+
+  .all-courses-left-side {
+    position: relative;
+    top: 0;
+  }
+}
+
+/* FILTER ACTIONS */
+.filter-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.active-filter-count {
+  font-size: 14px;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.clear-filters-btn {
+  background: transparent;
+  border: 1px solid #f59e0b;
+  color: #f59e0b;
+  padding: 6px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 13px;
+}
+
+.clear-filters-btn:hover {
+  background: #f59e0b;
+  color: #fff;
+}

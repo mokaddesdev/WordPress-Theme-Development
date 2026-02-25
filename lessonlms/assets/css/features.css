@@ -1,0 +1,68 @@
+
+/*----- features section -----*/
+section.features {
+  padding: 200px 0;
+}
+
+.features-wrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 130px;
+}
+
+.features-img {
+  width: 570px;
+  display: flex;
+  gap: 30px;
+}
+
+.features-img img {
+  width: 270px;
+  height: 404px;
+}
+
+.features-img img.img-1 {
+  margin-top: 33px;
+}
+
+.features-text {
+  width: 470px;
+  padding-top: 59px;
+}
+
+.features-text h3,
+.cta-text h3 {
+  color: #171100;
+  font-size: 38px;
+  font-weight: 700;
+  line-height: 126.316%;
+  letter-spacing: -0.76px;
+  margin-bottom: 17px;
+}
+
+.features-text p,
+.cta-text p {
+  color: #5F5B53;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 175%;
+  margin-bottom: 16px;
+}
+
+.features-text span {
+  color: #5F5B53;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 175%;
+  margin-bottom: 32px;
+}
+
+.features-text .sign-up,
+.cta-text .join-now {
+  width: 137px;
+  height: 50px;
+  border-radius: 26px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 175%;
+}

@@ -1,0 +1,106 @@
+.lessonlms-meta-section {
+    margin-bottom: 30px;
+    padding: 20px;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+}
+
+.lessonlms-section-title {
+    margin-bottom: 20px;
+    font-size: 18px;
+    font-weight: 600;
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 10px;
+}
+
+.lessonlms-fields-wrap {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 🔥 1 row = 2 inputs */
+    gap: 20px;
+}
+
+.lessonlms-field label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 500;
+}
+
+.lessonlms-field input {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.lessonlms-field input:focus {
+    border-color: #2563eb;
+    outline: none;
+}
+
+.lessonlms-field textarea {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.lessonlms-field textarea:focus {
+    border-color: #2563eb;
+    outline: none;
+}
+
+.featured-check{
+  position: absolute;
+  height: 150px;
+  margin-top: -15px;
+}
+
+.featured-check label{
+ padding-right: 20px;
+ padding-bottom: 20px;
+}
+
+.featured-check input[type="checkbox"]{
+   -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+
+  position: relative;
+  width: 80px;
+  height: 40px;
+  background: #c6c6c6 !important;
+  outline: none;
+  border-radius: 20px;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, .2);
+  transition: 0.5s;
+}
+
+.featured-check input[type="checkbox"]:checked{
+  background: #FFB900 !important;
+  outline: none;
+
+}
+
+.featured-check input[type="checkbox"]::before{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  background: #fff;
+  transition: .5s;
+  transform: scale(1.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, .2);
+
+}
+
+.featured-check input[type="checkbox"]:checked::before{
+     left: 40px;
+       background: #fff;
+  
+}

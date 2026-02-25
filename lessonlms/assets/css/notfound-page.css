@@ -1,0 +1,116 @@
+/* 404 Page Wrapper */
+.error-page-wrapper {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f9fafb;
+    padding: 40px 20px;
+}
+
+/* Container */
+.error-page-container {
+    max-width: 700px;
+    width: 100%;
+    background: #ffffff;
+    padding: 60px 40px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* Header */
+.error-page-title {
+    font-size: 120px;
+    font-weight: 800;
+    color: #ff4d4f;
+    line-height: 1;
+    margin-bottom: 10px;
+}
+
+.error-page-subtitle {
+    font-size: 20px;
+    font-weight: 500;
+    color: #6b7280;
+    margin-bottom: 40px;
+}
+
+/* Content */
+.error-page-heading {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #111827;
+}
+
+.error-page-description {
+    font-size: 16px;
+    color: #4b5563;
+    margin-bottom: 30px;
+}
+
+/* Search Form */
+.error-search-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.error-search-input {
+    flex: 1;
+    padding: 14px 16px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.error-search-input:focus {
+    outline: none;
+    border-color: #ff4d4f;
+}
+
+/* Button */
+.error-search-button {
+    padding: 14px 24px;
+    background: #ff4d4f;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.error-search-button:hover {
+    background: #e6393b;
+}
+
+/* Back Home Link */
+.error-back-home {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #ff4d4f;
+    text-decoration: none;
+}
+
+.error-back-home:hover {
+    text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+    .error-page-title {
+        font-size: 80px;
+    }
+
+    .error-search-form {
+        flex-direction: column;
+    }
+
+    .error-search-button {
+        width: 100%;
+    }
+}

@@ -1,0 +1,76 @@
+body.login h1 a,
+body.login #backtoblog,
+p#reg_passmail,
+.notice.notice-info.message,
+.notice.notice-info.message.register{
+    display: none;
+} 
+
+input#wp-submit {
+    background: linear-gradient(to right, #FFB900 50%, #171100 50%);
+    background-size: 200% 100%;
+    background-position: right bottom;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: all 0.5s ease;
+}
+
+input#wp-submit:hover {
+    background-position: left bottom;
+    color: #171100;
+}
+div#login{
+  padding: 20px 0px 40px 0px;
+}
+
+p#nav {
+    display: flex;
+    gap: 0;
+}
+
+p#nav {
+    font-size: 14px;
+}
+
+#nav::after,
+#nav::before {
+    content: none;
+}
+
+p#nav {
+    white-space: nowrap;
+}
+
+p#nav {
+    text-indent: -9999px;
+}
+
+p#nav a {
+    text-indent: 0;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.notice.notice-info.message.reset-pass p>a,
+a.wp-login-register,
+a.wp-login-log-in,
+a.wp-login-lost-password{
+    background: linear-gradient(to right, #171100 50%,#FFB900 50%);
+    background-size: 200% 100%;
+    background-position: right bottom;
+    color: #171100!important;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: all 0.5s ease;
+}
+.notice.notice-info.message.reset-pass p>a:hover,
+a.wp-login-register:hover,
+a.wp-login-log-in:hover,
+a.wp-login-lost-password:hover{
+   background-position: left bottom;
+    color: white !important;
+} 
