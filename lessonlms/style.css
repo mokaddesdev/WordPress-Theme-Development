@@ -1,29 +1,55 @@
-/*
-
-Theme Name: LessonLMS
-Theme URI: https://projukti_learning.com/lesson
+/*!
+Theme Name: lessonlms
+Theme URI: https://mokaddesali.com/themes/
 Author: Mokaddes Ali
-Author URI: https://mokaddesali.com
-Description: Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nulla minus exercitationem perspiciatis. Ut repellat alias nobis, provident, placeat eveniet dolore itaque quos, magnam dignissimos numquam repudiandae sapiente doloribus recusandae ipsum ab! Laborum reprehenderit beatae, culpa maxime saepe consectetur nemo modi repellat quae voluptatum quis neque necessitatibus est, eum reiciendis natus!
-
-Version: 1.0
+Author URI: https://mokaddesali.com/
+Description: Classic Theme, Support woocommerce
+Version: 1.0.0
+Tested up to: 5.4
+Requires PHP: 7.4
+License: GNU General Public License v2 or later
+License URI: LICENSE
 Text Domain: lessonlms
+Tags: custom-background, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready
+
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned.
 */
 
+/*--------------------------------------------------------------
+>>> TABLE OF CONTENTS:
+----------------------------------------------------------------
+# Generic
+	- Normalize
+	- Box sizing
+# Base
+	- Typography
+	- Elements
+	- Links
+	- Forms
+## Layouts
+# Components
+	- Navigation
+	- Posts and pages
+	- Comments
+	- Widgets
+	- Media
+	- Captions
+	- Galleries
+# plugins
+	- Jetpack infinite scroll
+# Utilities
+	- Accessibility
+	- Alignments
 
-/**
- * Theme Name:        Aquila
- * Theme URI:         https://example.com/fabled-sunset
- * Description:       Custom theme description...
- * Version:           1.0.0
- * Author:            Mokaddes Ali
- * Author URI:        https://example.com
- * Tags:              block-patterns, full-site-editing
- * Text Domain:       aquila
- * Domain Path:       /assets/lang
- * Tested up to:      6.4
- * Requires at least: 6.2
- * Requires PHP:      7.4
- * License:           GNU General Public License v2.0 or later
- * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- */
+--------------------------------------------------------------*/
+
+/*--------------------------------------------------------------
+# Generic
+--------------------------------------------------------------*/
+
+/* Normalize
+--------------------------------------------- */
+
+/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
+
