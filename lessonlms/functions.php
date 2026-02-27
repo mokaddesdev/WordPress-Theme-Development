@@ -19,11 +19,11 @@ add_action( 'login_footer', 'lessonlms_login_footer' );
     // Theme includes
     $theme_dir = get_template_directory();
     $user = wp_get_current_user();
-
     // Core functions
     include_once $theme_dir . '/inc/enqueue.php';
     include_once $theme_dir . '/inc/admin/admin-enqueue.php';
     include_once $theme_dir . '/inc/default.php';
+    include_once $theme_dir . '/inc/woocommerce.php';
 
     // include_once $theme_dir . '/def.php';
 
@@ -2850,12 +2850,3 @@ function lessonlms_enqueue_course_scripts() {
 }
 add_action('wp_enqueue_scripts', 'lessonlms_enqueue_course_scripts');
 
-// Checkout page এ product name replace করার জন্য filter
-add_filter( 'woocommerce_cart_item_name', 'lessonlms_custom_checkout_product_name', 10, 3 );
-
-function lessonlms_custom_checkout_product_name( $product_name, $cart_item, $cart_item_key ) {
-    if( is_checkout() ) { // শুধু checkout page
-        $product_name = "My Custom Product Title"; // এখানে তুমি test name দিতে পারো
-    }
-    return $product_name;
-}

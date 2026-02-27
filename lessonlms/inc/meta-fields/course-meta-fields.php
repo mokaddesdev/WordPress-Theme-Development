@@ -35,21 +35,6 @@ function lessonlms_get_course_meta_fields() {
                 'type'  => 'text',
             ),
         ),
-
-        'pricing' => array(
-            'regular_price' => array(
-                'label' => 'Regular Price',
-                'type'  => 'number',
-                'step'  => '0.01',
-                'required' => true,
-            ),
-            'original_price' => array(
-                'label' => 'Original Price',
-                'type'  => 'number',
-                'step'  => '0.01',
-                'required' => true,
-            ),
-        ),
          'course_extra_sections' => array(
             'course_learn_point' => array(
                 'label' => 'What you’ll learn',
@@ -88,7 +73,7 @@ function lessonlms_couses_add_meta_box_callback($post) {
     <div class="lessonlms-meta-section lessonlms-meta-section-<?php echo esc_attr( $section_key ); ?>">
 
         <h3 class="lessonlms-section-title">
-            <?php echo esc_html( ( $section_key === 'pricing' ) ? 'Pricing' : 'Course Details' ); ?>
+            <?php echo esc_html( ( $section_key === 'course_extra_sections' ) ? 'Course Extra Information Sections' : 'Course Details' ); ?>
         </h3>
 
         <div class="lessonlms-fields-wrap">

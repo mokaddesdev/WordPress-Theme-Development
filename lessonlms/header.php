@@ -11,95 +11,60 @@
 </head>
 
 <body <?php body_class(); ?>>
-    <header>
+    <header class="header-area">
         <div class="container">
-            <div class="header-wrapper">
-                <!----- logo ----->
-                <div class="logo">
-                    <?php if (has_custom_logo()): ?>
-                        <?php the_custom_logo(); ?>
-                    <?php else : ?>
-                        <a href="<?php echo esc_url(home_url('/')); ?>">
-                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/header-logo.png"
-                                alt="<?php echo esc_attr(get_bloginfo('name')) ?>" />
+            <div class="logo">
+                <img src="<?php echo get_template_directory_uri()?>/assets/images/header-logo.png" alt="Header Logo">
+            </div>
+            <nav class="menus">
+                <!-- mobile menu -->
+                <div class="head">
+                    <div class="logo">
+                        <img src="" alt="">
+                    </div>
+                    <button type="button" class="menu-close-btn btn-icon">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+
+                <ul class="menu">
+                    <li><a href="#">Home</a></li>
+                    <li class="dropdown"><a href="#">
+                        About
+                        <i class="fa-solid fa-angle-down"></i>
+                    </a>
+                    <ul class="sub-menus">
+                        <li><a href="#">A</a></li>
+                        <li><a href="#">A</a></li>
+                        <li><a href="#">A</a></li>
+                        <li><a href="#">A</a></li>
+                    </ul>
+                    </li>
+                    <li><a href="#">Courses</a></li>
+                    <li  class="dropdown">
+                        <a href="#">
+                            Blog
+                            <i class="fa-solid fa-angle-down"></i>
                         </a>
-                    <?php endif; ?>
-                </div>
-
-                <!----- main-menu and button ----->
-                <div class="menu-button-wrapper">
-                    <nav class="main-menu">
-                        <?php
-                        wp_nav_menu(array(
-                            'theme_location' => 'header_menu',
-                            'container'      => false,
-                            'menu_class'     => '',
-                            'fallback_cb'    => false
-                        ));
-                        ?>
-                    </nav>
-                    <!----- sign-up-btn ----->
-                    <div class="button btn-black">
-                        <?php
-                        $user_login = is_user_logged_in();
-                        $user_dashboard = home_url('/my-account/');
-                        if ($user_login) :
-                        ?>
-                            <a href="<?php echo esc_url($user_dashboard); ?>"> Dashboard </a>
-                        <?php else : ?>
-                            <a href="<?php echo esc_url(home_url('my-account')); ?>">Sign Up</a>
-                        <?php endif; ?>
-                    </div>
-
-                    <!----- phone menu ----->
-                    <div class="menu-btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
-                            viewBox="0 0 24 24">
-                            <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" />
-                        </svg>
-                    </div>
-                </div>
-
-                <!----- menu item for phone ----->
-                <div id="navPhone" class="menu-item-phone">
-
-                    <!----- logo ----->
-                    <div class="logo-div">
-                        <div class="logo">
-                            <?php if (has_custom_logo()) : ?>
-                                <?php the_custom_logo(); ?>
-                            <?php else: ?>
-                                <a href="<?php echo esc_url(home_url('/')); ?>">
-                                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/header-logo.png"
-                                        alt="<?php echo esc_attr(get_bloginfo('name')) ?>" />
-                                </a>
-                            <?php endif; ?>
-                        </div>
-
-                        <div class="x-icon menu-btn">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                                stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                <line x1="18" y1="6" x2="6" y2="18" stroke-linecap="round" />
-                                <line x1="6" y1="6" x2="18" y2="18" stroke-linecap="round" />
-                            </svg>
-                        </div>
-                    </div>
-
-                    <div class="menu-div">
-                        <nav class="main-menu-phone">
-                            <?php
-                            wp_nav_menu(array(
-                                'theme_location' => 'mobile_menu',
-                                'fallback_cb'    => false,
-                            ));
-                            ?>
-                        </nav>
-                    </div>
-                </div>
+                        <ul class="sub-menus">
+                        <li><a href="#">A</a></li>
+                        <li><a href="#">A</a></li>
+                        <li><a href="#">A</a></li>
+                        <li><a href="#">A</a></li>
+                    </ul>
+                </li>
+                    <li><a href="#">News</a></li>
+                </ul>
+            </nav>
+            <div class="header-right">
+                <button type="button" class="search-btn btn-icon"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <button type="button" class="shoping-cart-btn btn-icon"><i class="fa-solid fa-cart-shopping"></i></button>
+                <!-- open menus -->
+                 <button type="button" class="open-menu btn-icon"><i class="fa-solid fa-bars"></i></button>
             </div>
         </div>
     </header>
+ 
 
     <button class="scroll-top-btn"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
             stroke-width="1.5" stroke="currentColor" class="size-6">

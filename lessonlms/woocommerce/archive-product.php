@@ -17,82 +17,72 @@
 
 defined( 'ABSPATH' ) || exit;
 
-get_header( 'shop' );
-
 /**
- * Hook: woocommerce_before_main_content.
- *
- * @hooked woocommerce_output_content_wrapper - 10 (outputs opening divs for the content)
- * @hooked woocommerce_breadcrumb - 20
- * @hooked WC_Structured_Data::generate_website_data() - 30
+ * Template Name: Show All Courses
+ * 
+ * @package lessonlms
  */
-do_action( 'woocommerce_before_main_content' );
 
-/**
- * Hook: woocommerce_shop_loop_header.
- *
- * @since 8.6.0
- *
- * @hooked woocommerce_product_taxonomy_archive_header - 10
- */
-do_action( 'woocommerce_shop_loop_header' );
+    $page_title =  get_theme_mod('courses_page_title', 'All Courses');
+    $page_description = get_theme_mod('courses_page_description', 'Build new skills with new trendy courses and shine for the next future career.');             
+    get_header();
+    get_template_part('template-parts/commom/breadcrumb');
 
-if ( woocommerce_product_loop() ) {
-
-	/**
-	 * Hook: woocommerce_before_shop_loop.
-	 *
-	 * @hooked woocommerce_output_all_notices - 10
-	 * @hooked woocommerce_result_count - 20
-	 * @hooked woocommerce_catalog_ordering - 30
-	 */
-	do_action( 'woocommerce_before_shop_loop' );
-
-	woocommerce_product_loop_start();
-
-	if ( wc_get_loop_prop( 'total' ) ) {
-		while ( have_posts() ) {
-			the_post();
-
-			/**
-			 * Hook: woocommerce_shop_loop.
-			 */
-			do_action( 'woocommerce_shop_loop' );
-
-			wc_get_template_part( 'content', 'product' );
-		}
-	}
-
-	woocommerce_product_loop_end();
-
-	/**
-	 * Hook: woocommerce_after_shop_loop.
-	 *
-	 * @hooked woocommerce_pagination - 10
-	 */
-	do_action( 'woocommerce_after_shop_loop' );
-} else {
-	/**
-	 * Hook: woocommerce_no_products_found.
-	 *
-	 * @hooked wc_no_products_found - 10
-	 */
-	do_action( 'woocommerce_no_products_found' );
+    if (isset($_POST['selected_category'])) {
+    $_SESSION['selected_category'] = intval($_POST['selected_category']);
 }
 
-/**
- * Hook: woocommerce_after_main_content.
- *
- * @hooked woocommerce_output_content_wrapper_end - 10 (outputs closing divs for the content)
- */
-do_action( 'woocommerce_after_main_content' );
+$selected_category = $_SESSION['selected_category'] ?? 0;
 
-/**
- * Hook: woocommerce_sidebar.
- *
- * @hooked woocommerce_get_sidebar - 10
- */
-do_action( 'woocommerce_sidebar' );
 
-get_footer( 'shop' );
-?>
+ ?>
+
+
+<!----- Courses section ----->
+<section class="all-courses-section">
+    <div class="container">
+    <!-- courses left side -->
+     <div class="all-courses-left-side">
+        <?php get_template_part('template-parts/all-courses/all-courses', 'sidebar') ?>
+     </div>
+
+    <!-- courses right side -->
+     <div class="all-courses-right-side">
+
+        <div class="heading courses-heading">
+            <h2><?php echo esc_html($page_title); ?></h2>
+            <p><?php echo esc_html($page_description); ?></p>
+        </div>
+
+        <div class="courses-all-wrapper">
+
+            <?php
+            $args = array(
+                "post_type" => "courses",
+                'post_status' => 'publish',
+                'orderby'        => 'date',
+                'order' => 'DESC',
+                'posts_per_page' => get_option('posts_per_page'),
+                'paged' => $paged,
+            );
+            
+            $couses = new WP_Query($args);
+            
+            if ($couses->have_posts()):
+                while ($couses->have_posts()): $couses->the_post();
+
+             get_template_part('template-parts/commom/course','card');
+            endwhile; ?>
+            <?php else: ?>
+            <h2>Courses Not Found</h2>
+
+            <?php endif;
+            wp_reset_postdata(); ?>
+        </div>
+
+         <?php echo lessonlms_all_pagination(); ?>
+    </div>
+ </div>
+</section>
+
+<?php get_footer(); ?>
