@@ -54,7 +54,6 @@ get_header( 'shop' ); ?>
 		 * @hooked woocommerce_get_sidebar - 10
 		 */
 		do_action( 'woocommerce_sidebar' );
-		get_template_part('template-parts/single-course/main', 'section');
 	?>
 
 <?php

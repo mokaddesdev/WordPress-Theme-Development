@@ -111,7 +111,6 @@ function lessonlms_couses_add_meta_box_callback($post) {
                 </div>
             <?php endforeach; ?>
         </div>
-
     </div>
     <?php
     endforeach;
