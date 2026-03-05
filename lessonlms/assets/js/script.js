@@ -146,20 +146,4 @@ $('.review-form').on('submit', function(e) {
       module.addClass('open');
     }
   });
-
-  // Video Popup
-  $('.preview-video').magnificPopup({
-    type:'iframe',
-    callbacks:{
-      elementParse:function(item){
-        let video = item.el.attr('data-video');
-        if(video.includes("youtube.com")){
-          let id = video.split("v=")[1];
-          item.src = "https://www.youtube.com/embed/" + id + "?autoplay=1&rel=0";
-        } else {
-          item.src = video;
-        }
-      }
-    }
-  });
 });

@@ -73,8 +73,10 @@
   opacity: 1;
 }
 .profile-btn i, .dashboard-icon, .logout-icon, .shop-cart-btn i{
-    color: yellow;
-    font-size: 26px;
+    font-size: 18px;
+font-style: normal;
+line-height: 28px; 
+    color: #171100;
 }
                     </style>
                      <?php

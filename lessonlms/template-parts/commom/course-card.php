@@ -45,40 +45,9 @@
 
 <div class="course">
     <div class="img">
-        <style>
-            .course .img{
-                position: relative;
-            }
-            .add-to-cart-wishlist{
-                position: absolute;
-                top: 20px;
-                right: 20px;
-                display: flex;
-                flex-direction: column;
-                gap: 10px;
-            }
-            .wishlist-btn, .add-to-cart-btn{
-                background-color: gray;
-                font-size: 24px;
-                color: black;
-                background: none;
-                z-index: 100;
-            }
-
-            .course-add-to-cart{
-                height: 30px;
-                width: 50px;
-                background-color: gray;
-                padding: 8px;
-                border-radius: 20px;
-            }
-            .regular-price{
-                text-decoration: line-through !important;
-            }
-        </style>
      <?php if ( $is_enroll == false ) : ?>
         <div class="add-to-cart-wishlist">
-             <div class="add-to-cart-btn">
+            <div class="course-cart-wrapper">
                  <?php
             if ( ! $user_login ) :
             ?>
@@ -104,14 +73,20 @@
             $login_user = is_user_logged_in();
             if ( ! $login_user ) :
             ?>
-            <div class="">
+            <div class="wishlist-btn">
             <a href="<?php echo esc_url( wp_login_url() ); ?>">
                     <i class="fa-solid fa-heart"></i>
             </a>
             </div>
             <?php else : ?>
             <div class="wishlist-btn">
+                 <form method="post">
+                <input type="hidden" name="add-to-cart" value="<?php echo esc_attr( $course_product ); ?>">
+                <input type="hidden" name="course_id" value="<?php echo get_the_ID(); ?>">
+                <button type="submit" class="course-add-to-cart">
                 <i class="fa-solid fa-heart"></i>
+                </button>
+            </form>
             </div>
             <?php endif; ?>
         </div>
