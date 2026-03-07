@@ -6,14 +6,15 @@
  */
 function lessonlms_admin_enqueue() {
     require __DIR__ . '/css-enqueue.php';
-    $theme_uri = get_template_directory_uri();
-    wp_enqueue_script(
-        'admin-module-js',
-        $theme_uri . '/assets/js/admin/delete-module.js',
-        array('jquery'),
-        time(),
-        true
-    );
+     wp_register_script( 'module-js', $theme_uri . '/assets/js/admin/delete-module.js', array('jquery'), time(), true );
+     
+    $screen = get_current_screen();
+    if ( empty( $screen ) ) {
+        return;
+    }
+    if ( $screen && 'lessons' === $screen->post_type ) {
+        wp_enqueue_script( 'module-js' );
+    }
 
     wp_enqueue_script(
         'add-module-js',
