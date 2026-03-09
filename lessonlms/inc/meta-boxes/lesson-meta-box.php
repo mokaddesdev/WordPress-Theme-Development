@@ -115,136 +115,142 @@ function lessonlms_render_lesson_meta_box( $post ) {
     }
 	?>
 
-	<div class="lesson-meta-box">
+<div class="lesson-meta-box">
 
-		<div class="meta-box-left">
+	<div class="meta-box-left">
 
-			<p>
-				<label for="select-course">
-					<?php esc_html_e( 'Select Course', 'lessonlms' ); ?>
-					<span class="required">*</span>
-				</label>
+		<p class="title">
+			<label class="label" for="select-course">
+				<?php esc_html_e( 'Select Course', 'lessonlms' ); ?>
+				<span class="required">*</span>
+			</label>
 
-				<select name="_selected_course" id="select-course" required data-nonce="<?php echo esc_attr( wp_create_nonce( 'select-course-nonce' ) ); ?>">
+			<select class="select" name="_selected_course" id="select-course" required data-nonce="<?php echo esc_attr( wp_create_nonce( 'select-course-nonce' ) ); ?>">
 
-					<option value="">
-						--- <?php esc_html_e( 'Select Course', 'lessonlms' ); ?> ---
-					</option>
+				<option value="">
+					--- <?php esc_html_e( 'Select Course', 'lessonlms' ); ?> ---
+				</option>
 
-					<?php if ( ! empty( $courses ) ) : ?>
+				<?php if ( ! empty( $courses ) ) : ?>
 
-						<?php foreach ( $courses as $course ) : ?>
+					<?php foreach ( $courses as $course ) : ?>
 
-							<option value="<?php echo esc_attr( $course->ID ); ?>" <?php selected( $selected_course, $course->ID ); ?>>
+						<option value="<?php echo esc_attr( $course->ID ); ?>" <?php selected( $selected_course, $course->ID ); ?>>
 
-								<?php echo esc_html( $course->post_title ); ?>
-
-							</option>
-
-						<?php endforeach; ?>
-
-					<?php else : ?>
-
-						<option value="">
-							<?php esc_html_e( 'No course added with module', 'lessonlms' ); ?>
-						</option>
-
-					<?php endif; ?>
-
-				</select>
-			</p>
-
-			<p>
-				<label for="select-module">
-					<?php esc_html_e( 'Select Module', 'lessonlms' ); ?>
-					<span class="required">*</span>
-				</label>
-
-				<select name="_select_module" id="select-module" required>
-
-					<option value="">
-						--- <?php esc_html_e( 'Select Module', 'lessonlms' ); ?> ---
-					</option>
-
-					<?php foreach ( $modules_for_course as $module ) : ?>
-
-						<option value="<?php echo esc_attr( $module->ID ); ?>" <?php selected( $selected_module, $module->ID ); ?>>
-
-							<?php echo esc_html( $module->post_title ); ?>
+							<?php echo esc_html( $course->post_title ); ?>
 
 						</option>
 
 					<?php endforeach; ?>
 
-				</select>
-			</p>
+				<?php else : ?>
 
-			<p>
-				<label for="video-url">
-					<?php esc_html_e( 'Video URL', 'lessonlms' ); ?>
-					<span class="required">*</span>
-				</label>
+					<option value="">
+						<?php esc_html_e( 'No course added with module', 'lessonlms' ); ?>
+					</option>
 
-				<input
-					type="url"
-					name="_video_url"
-					id="video-url"
-					value="<?php echo esc_url( $video_url ); ?>"
-					placeholder="https://example.com/video.mp4"
-					required
-				/>
-			</p>
+				<?php endif; ?>
 
-		</div>
+			</select>
+		</p>
 
-		<div class="meta-box-right">
+		<p>
+			<label class="label" for="select-module">
+				<?php esc_html_e( 'Select Module', 'lessonlms' ); ?>
+				<span class="required">*</span>
+			</label>
 
-			<p>
-				<label for="video_duration">
-					<?php esc_html_e( 'Video Duration', 'lessonlms' ); ?>
-				</label>
+			<select class="select" name="_select_module" id="select-module" required>
 
-				<input
-					type="number"
-					step="0.1"
-					name="video_duration"
-					id="video_duration"
-					value="<?php echo esc_attr( $video_duration ); ?>"
-					required
-				/>
-			</p>
+				<option value="">
+					--- <?php esc_html_e( 'Select Module', 'lessonlms' ); ?> ---
+				</option>
 
-			<p>
-				<label for="lesson-status">
-					<?php esc_html_e( 'Active Lesson', 'lessonlms' ); ?>
-				</label>
+				<?php foreach ( $modules_for_course as $module ) : ?>
 
-				<input
-					type="checkbox"
-					name="_lesson_status"
-					id="lesson-status"
-					value="1"
-					<?php checked( $lesson_status, '1' ); ?>
-				/>
-			</p>
+					<option value="<?php echo esc_attr( $module->ID ); ?>" <?php selected( $selected_module, $module->ID ); ?>>
 
-			<p>
-				<label for="free-lesson">
-					<?php esc_html_e( 'Free Lesson', 'lessonlms' ); ?>
-				</label>
+						<?php echo esc_html( $module->post_title ); ?>
 
-				<input
-					type="checkbox"
-					name="_free_lesson"
-					id="free-lesson"
-					value="1"
-					<?php checked( $free_lesson, '1' ); ?>
-				/>
-			</p>
+					</option>
 
-		</div>
+				<?php endforeach; ?>
+
+			</select>
+		</p>
+		<p class="checkbox-label">
+    <label class="label" for="lesson-status">
+        <?php esc_html_e( 'Active Lesson', 'lessonlms' ); ?>
+    </label>
+
+    <label class="switch">
+        <input
+            type="checkbox"
+            name="_lesson_status"
+            id="lesson-status"
+            value="1"
+            <?php checked( $lesson_status, '1' ); ?>
+        />
+        <span class="slider"></span>
+    </label>
+</p>
 
 	</div>
+
+	<div class="meta-box-right">
+		<p>
+			<label class="label" for="video-url">
+				<?php esc_html_e( 'Video URL', 'lessonlms' ); ?>
+				<span class="required">*</span>
+			</label>
+
+			<input
+				class="input-data"
+				type="url"
+				name="_video_url"
+				id="video-url"
+				value="<?php echo esc_url( $video_url ); ?>"
+				placeholder="https://example.com/video.mp4"
+				required
+			/>
+		</p>
+
+		<p>
+			<label class="label" for="video_duration">
+				<?php esc_html_e( 'Video Duration', 'lessonlms' ); ?>
+			</label>
+
+			<input
+			    class="input-data"
+				type="number"
+				step="0.1"
+				name="video_duration"
+				id="video_duration"
+				value="<?php echo esc_attr( $video_duration ); ?>"
+				required
+			/>
+		</p>
+
+<p class="checkbox-label">
+    <label class="label" for="free-lesson">
+        <?php esc_html_e( 'Free Lesson', 'lessonlms' ); ?>
+    </label>
+
+    <label class="switch">
+        <input
+            type="checkbox"
+            name="_free_lesson"
+            id="free-lesson"
+            value="1"
+            <?php checked( $free_lesson, '1' ); ?>
+        />
+        <span class="slider"></span>
+    </label>
+</p>
+
+	</div>
+
+</div>
 
 	<?php
 }
