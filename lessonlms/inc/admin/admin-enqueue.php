@@ -24,7 +24,10 @@ function lessonlms_admin_enqueue() {
      wp_register_script( 'delete-module-js', THEME_URI . '/assets/js/admin/delete-module.js', array('jquery'), filemtime( THEME_DIR . '/assets/js/admin/delete-module.js' ), true );
 
      wp_register_script( 'edit-module-js', THEME_URI . '/assets/js/admin/edit-module.js', array('jquery'), filemtime( THEME_DIR . '/assets/js/admin/edit-module.js' ), true );
-        wp_enqueue_script( 'module-js' );
+
+     wp_register_script( 'fetch-module-option-js', THEME_URI . '/assets/js/admin/fetch-module-option.js', array('jquery'), filemtime( THEME_DIR . '/assets/js/admin/fetch-module-option.js' ), true );
+    
+        wp_enqueue_script( 'fetch-module-option-js' );
 
     $screen = get_current_screen();
 

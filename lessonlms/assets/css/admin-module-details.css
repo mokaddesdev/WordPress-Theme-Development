@@ -283,3 +283,10 @@
 .module-modal .cancel-module:hover {
     background: #5a6268;
 }
+
+.edit-module-popup {
+    pointer-events: none;
+}
+.edit-module-popup.show-modal {
+    pointer-events: auto;
+}
