@@ -5,6 +5,13 @@
  * @package lessonlms
  */
 
+if ( ! defined( 'THEME_DIR' ) ) {
+    define( 'THEME_DIR', get_template_directory() );
+}
+
+if ( ! defined( 'THEME_URI' ) ) {
+    define( 'THEME_URI', get_template_directory_uri() );
+}
 function lessonlms_login_header() {
 get_header();
 }
@@ -29,6 +36,8 @@ add_action( 'login_footer', 'lessonlms_login_footer' );
 
     // add module & details module page
     require_once $theme_dir . '/inc/add-menu-pages/add-module.php';
+    require_once $theme_dir . '/inc/add-menu-pages/module-details.php';
+    
     // Pagination
     include_once $theme_dir . '/inc/pagination.php';
 
@@ -2822,3 +2831,4 @@ function lessonlms_enqueue_course_scripts() {
     wp_enqueue_style('lessonlms-course', get_template_directory_uri() . '/css/course.css', array(), '1.0');
 }
 add_action('wp_enqueue_scripts', 'lessonlms_enqueue_course_scripts');
+require_once THEME_DIR . '/inc/ajax-functions/ajax-function.php';

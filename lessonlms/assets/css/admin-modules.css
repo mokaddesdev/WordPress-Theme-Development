@@ -2,7 +2,7 @@
 .lessonlms-wrap {
     font-family: "Poppins", sans-serif;
     width: 100%;
-    max-width: 1200px;
+    max-width: 1100px;
     margin: 20px auto;
     padding: 20px;
     background: #fff;
@@ -14,11 +14,11 @@
 }
 
 .course-module-form{
-    width: 30%;
+    width: 40%;
 }
 /* Form Header */
 .course-module-form h2 {
-    font-size: 24px;
+     font-size: 22px;
     font-weight: 600;
     color: #00aaff;
     margin-bottom: 20px;
@@ -67,64 +67,13 @@
     font-size: 15px;
     font-weight: 400;
 }
-/* Custom Checkbox Switch */
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 60px;
-  height: 30px;
-  margin-left: 10px;
-  vertical-align: middle;
-}
-
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  transition: 0.4s;
-  border-radius: 34px;
-}
-
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 25px;
-  width: 25px;
-  left: 3px;
-  top: 2px;
-  background-color: white;
-  transition: 0.4s;
-  border-radius: 50%;
-}
-
-input:checked + .slider {
-  background-color: #00aaff;
-}
-
-input:checked + .slider:before {
-  transform: translateX(30px);
-}
-
-input:focus + .slider {
-  box-shadow: 0 0 1px #00aaff;
-}
 
 /* Button */
 .course-module-form button.button-primary {
     background-color: #00aaff;
     color: #fff;
     border: none;
-    padding: 10px 20px;
+    padding: 8px 16px;
     font-size: 14px;
     font-weight: 600;
     border-radius: 6px;
@@ -138,7 +87,7 @@ input:focus + .slider {
 
 /* Table Wrapper */
 #course-modules-table-wrapper {
-    margin-top: 30px;
+    margin-top: 0px;
 }
 
 /* Optional: add hover effect on table rows if needed */
@@ -162,52 +111,6 @@ input:focus + .slider {
     margin-bottom: 20px;
 }
 
-/* Table */
-.modules-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 14px;
-}
-
-/* Table Header */
-.modules-table thead th {
-    background-color: #f1faff;
-    color: #333;
-    font-weight: 600;
-    padding: 12px 15px;
-    text-align: left;
-    border-bottom: 2px solid #00aaff;
-}
-
-/* Table Body */
-.modules-table tbody td {
-    padding: 12px 15px;
-    border-bottom: 1px solid #e0e0e0;
-}
-
-/* Striped Rows */
-.modules-table tbody tr:nth-child(odd) {
-    background-color: #f9f9f9;
-}
-
-/* Hover Effect */
-.modules-table tbody tr:hover {
-    background-color: #f0f8ff;
-}
-
-/* Links */
-.modules-table a {
-    color: #00aaff;
-    text-decoration: none;
-    font-weight: 500;
-    transition: all 0.3s ease;
-}
-
-.modules-table a:hover {
-    color: #008ecc;
-    text-decoration: underline;
-}
-
 /* Empty State */
 .modules-table tbody td[colspan="3"] {
     text-align: center;
@@ -216,34 +119,37 @@ input:focus + .slider {
     padding: 20px 0;
 }
 
-/* LessonLMS Messages */
-.lessonlms-message {
-    position: fixed;
-    top: 20px;          /* উপরের থেকে দূরত্ব */
-    left: 50%;          /* center horizontally */
-    transform: translateX(-50%);
-    padding: 12px 24px;
-    border-radius: 6px;
-    font-family: "Poppins", sans-serif;
+/* Table Loader Wrapper */
+.lessonlms-table-loader {
+    width: 100%;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Spinner Animation */
+.lessonlms-spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #e6f7ff;
+    border-top: 4px solid #00aaff;
+    border-radius: 50%;
+    animation: lessonlmsSpin 0.8s linear infinite;
+}
+
+/* Loading Text */
+.lessonlms-table-loader span {
     font-size: 14px;
+    color: #666;
     font-weight: 500;
-    color: #fff;
-    z-index: 9999;
-    display: none;      /* initially hidden, fadeIn will show */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    font-family: "Poppins", sans-serif;
 }
 
-/* Success Message */
-.lessonlms-message.success {
-    background-color: #28a745; /* green */
-}
-
-/* Error Message */
-.lessonlms-message.error {
-    background-color: #dc3545; /* red */
-}
-
-/* Optional: add smooth fade in/out transitions */
-.lessonlms-message {
-    transition: all 0.3s ease;
+/* Animation */
+@keyframes lessonlmsSpin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }

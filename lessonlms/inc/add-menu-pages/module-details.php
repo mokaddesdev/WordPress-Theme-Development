@@ -4,137 +4,183 @@
  * 
  * @package lessonlms
  */
-function lessonlms_show_course_module_detail() {
-    add_submenu_page(
-        null,
-        'Course Modules',
-        'Course Modules',
-        'manage_options',
-        'lessonlms_show_modules',
-        'lessonlms_modules_page_callback'
-    );
-}
-add_action( 'admin_menu', 'lessonlms_show_course_module_detail' );
 
-//? callback function
-/**
- * Course module list
- * 
- * @package lessonlms
- */
-function lessonlms_modules_page_callback()
+if ( ! function_exists('lessonlms_show_course_module_detail')) {
+
+    function lessonlms_show_course_module_detail()
+    {
+        add_submenu_page(
+            null,
+            'Course Modules',
+            'Course Modules',
+            'manage_options',
+            'lessonlms_show_modules',
+            'lessonlms_modules_details_callback'
+        );
+    }
+}
+add_action('admin_menu', 'lessonlms_show_course_module_detail');
+
+
+function lessonlms_render_modules_table($course_id, $paged = 1)
 {
-    $course_id = isset( $_GET['course_id'] ) ? intval($_GET['course_id']) : 0;
+    $args = [
+        'post_type' => 'course_modules',
+        'post_parent' => $course_id,
+        'posts_per_page' => 10,
+        'paged' => $paged,
+        'orderby' => 'date',
+        'order' => 'DESC',
+    ];
+    $modules = new WP_Query($args);
 
-    if ( ! $course_id ) {
-        return;
-    }
-
-    $course_title = get_the_title( $course_id );
-    $modules = get_posts( array(
-        'post_type'         => 'course_modules',
-        'post_parent'       => $course_id,
-        'posts_per_page'    => -1,
-        'orderby'           => 'date',
-        'order'             => 'DESC'
-    ) );
+    ob_start();
     ?>
-    <div class="module-wrap">
-        <h2>
-            <?php echo esc_html( 'Modules for: ' . $course_title ); ?>
-        </h2>
-
-        <div class="add-back-btn">
-            <button class="lessonlms-back-btn">
-                <a href="<?php echo esc_url( admin_url( 'admin.php?page=lesslms_courses_modules_slug' ) ); ?>">
-                    <?php echo esc_html__( 'Add module', 'lessonlms' ); ?>
-                </a>
-            </button>
-        </div>
-
-        <!-- Wrap table in a form -->
-            <table class="wp-list-table widefat fixed striped modules-table">
-                <thead>
+    <table class="wp-list-table widefat fixed striped modules-table">
+        <thead>
+            <tr>
+                <th><?php echo esc_html__('Module Name', 'lessonlms'); ?></th>
+                <th><?php echo esc_html__('Status', 'lessonlms'); ?></th>
+                <th><?php echo esc_html__('Actions', 'lessonlms'); ?></th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php if ($modules->have_posts()): ?>
+                <?php while ($modules->have_posts()):
+                    $modules->the_post();
+                    $status = get_post_meta(get_the_ID(), 'module_status', true); ?>
                     <tr>
-                        <th class="module-name-list">
-                            <?php echo esc_html__( 'Module Name', 'lessonlms' ); ?>
-                        </th>
-                        <th>
-                            <?php echo esc_html__( 'Status', 'lessonlms' ); ?>
-                        </th>
-                        <th>
-                            <?php echo esc_html__( 'Actions', 'lessonlms' ); ?>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php if ( ! empty( $modules ) ) : ?>
-                        <?php foreach ( $modules as $module ):
-                            $status = get_post_meta( $module->ID, 'module_status', true );
-                            ?>
-                            <tr>
-                                <td>
-                                    <?php echo esc_html( $module->post_title ); ?>
-                                </td>
-                                <td>
-                                    <?php if ( $status ) : ?>
-                                    <span class="lessonlms-status <?php echo esc_attr( $status ); ?>">
-                                        <?php echo esc_html( ucfirst( $status ) ); ?> 
-                                        <!-- ucfirst() uppercase first letter => capitalize -->
-                                    </span>
-                                    <?php endif; ?>
-                                </td>
-                                <td>
-                                    <button class="lessonlms-edit" data-nonce="<?php echo wp_create_nonce( 'module-edit-nonce' ); ?>"
-                                        data-id="<?php echo esc_attr( $module->ID ); ?>">
-                                        <?php echo esc_html__( 'Edit', 'lessonlms' ); ?>
-                                    </button>
-                                    <form method="post">
-                                    <button class="lessonlms-delete" type="submit" name="lessonlms_delete_module"
-                                        value="<?php echo esc_attr( $module->ID ); ?>"
-                                        onclick="return confirm( 'Are you sure? This module will be permanently deleted!' )">
-                                        <?php echo esc_html__( 'Delete', 'lessonlms' ); ?>
-                                    </button>
+                        <td><?php the_title(); ?></td>
+                        <td>
+                            <?php if ($status): ?>
+                                <span class="lessonlms-status <?php echo esc_attr($status); ?>">
+                                    <?php echo esc_html(ucfirst($status)); ?>
+                                </span>
+                            <?php endif; ?>
+                        </td>
+                        <td>
+                            <button class="module-edit" data-id="<?php echo get_the_ID(); ?>"
+                                data-name="<?php echo esc_attr(get_the_title()); ?>"
+                                data-module_status="<?php echo esc_attr($status); ?>">
+                                Edit
+                            </button>
+                            <div class="edit-module-popup">
+                                <div class="module-modal">
+                                    <h2>Edit Module</h2>
+                                    <form class="edit-module-form" method="post">
+                                        <input type="hidden" name="module_id" class="module_id">
+                                        <label for="module_name">Name</label>
+                                        <input type="text" name="module_name" class="module_name">
+                                        <label for="module_status"> Module Status </label>
+                                        <p class="enable-module-title">
+                                            <label for="module_status" class="switch">
+                                                <input type="checkbox" id="module_status" name="module_status" value="enabled">
+                                                <span class="slider"></span>
+                                            </label>
+                                            <span>
+                                                <?php echo esc_html__('Enable this Course Module', 'lessonlms'); ?>
+                                            </span>
+                                        </p>
+                                        <div class="module-modal-buttons">
+                                            <button type="submit" class="update-module">Update Module</button>
+                                            <button type="button" class="cancel-module">Cancel</button>
+                                        </div>
                                     </form>
-                                </td>
+                                </div>
+                            </div>
+                            <button type="button" class="module-delete" data-id="<?php echo get_the_ID(); ?>"
+                                data-nonce="<?php echo wp_create_nonce('lessonlms_delete_module'); ?>">
+                                <?php echo esc_html__('Delete', 'lessonlms'); ?>
+                            </button>
+                        </td>
+                    </tr>
+                <?php endwhile;
+                wp_reset_postdata(); ?>
+            <?php else: ?>
+                <tr>
+                    <td colspan="3"><?php echo esc_html__('No modules found for this course.', 'lessonlms'); ?></td>
+                </tr>
+            <?php endif; ?>
+        </tbody>
+    </table>
 
-                            </tr>
-                        <?php endforeach; ?>
-                    <?php else: ?>
-                        <tr>
-                            <td colspan="3">
-                                <?php echo esc_html__( 'No modules found for this course.', 'lessonlms' ); ?>
-                            </td>
-                        </tr>
-                    <?php endif; ?>
-                </tbody>
-            </table>
-        </form>
-    </div>
     <?php
+    // Pagination (after table, always outside the loop)
+    if ($modules->max_num_pages > 1):
+        $paginations = paginate_links([
+            'base' => add_query_arg('paged', '%#%'),
+            'format' => '',
+            'current' => $paged,
+            'total' => $modules->max_num_pages,
+            'prev_text' => __('« Prev'),
+            'next_text' => __('Next »'),
+            'type' => 'list',
+        ]);
+        if ($paginations):
+            echo '<div class="lessonlms-pagination">' . $paginations . '</div>';
+        endif;
+    endif;
+
+    return ob_get_clean();
 }
 
-// Delete handling
-if ( isset( $_POST['lessonlms_delete_module'] ) ) {
-    $module_id = absint( $_POST['lessonlms_delete_module'] );
-    if ( $module_id ) {
-        wp_delete_post($module_id, true);
-        wp_redirect($_SERVER['REQUEST_URI']);
-        exit;
+if (!function_exists('lessonlms_modules_details_callback')) {
+
+    function lessonlms_modules_details_callback()
+    {
+        $course_id = isset($_GET['course_id']) ? intval($_GET['course_id']) : 0;
+        if (!$course_id)
+            return;
+
+        $course_title = get_the_title($course_id);
+
+        $paged = isset($_GET['paged']) ? intval($_GET['paged']) : 1;
+        ?>
+        <div class="module-wrap">
+            <!-- course_id -->
+            <input type="hidden" id="course_id" value="<?php echo esc_attr($course_id); ?>">
+            <h2>
+                <?php echo esc_html('Modules for: ' . $course_title); ?>
+            </h2>
+
+            <div class="module-back-btn">
+                <a href="<?php echo esc_url(admin_url('admin.php?page=courses_modules_slug')); ?>">
+                    <?php echo esc_html__('Add module', 'lessonlms'); ?>
+                </a>
+            </div>
+
+            <!-- Custom Confirm Modal -->
+            <div id="confirm-modal" class="edit-module-popup">
+                <div class="module-modal confirm-modal-wrapper">
+                    <p>Are you sure you want to delete this module?</p>
+                    <div style="text-align:center;">
+                        <button id="confirm-yes">Yes</button>
+                        <button id="confirm-no">No</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="table-wrapper">
+                <?php
+                echo lessonlms_render_modules_table($course_id, $paged);
+                global $wp_query;
+                if ($wp_query->max_num_pages > 1) {
+                    $paginations = paginate_links([
+                        'base' => add_query_arg('paged', '%#%'),
+                        'format' => '',
+                        'current' => $paged,
+                        'total' => $wp_query->max_num_pages,
+                        'prev_text' => __('« Prev'),
+                        'next_text' => __('Next »'),
+                        'type' => 'list',
+                    ]);
+                    if ($paginations) {
+                        echo '<div class="lessonlms-pagination">' . $paginations . '</div>';
+                    }
+                }
+                ?>
+            </div>
+        </div>
+        <?php
     }
 }
-?>
-<style>
-    .edit-module-form{
-        display: none;
-    }
-</style>
-<div class="edit-module-form">
-    <h2>
-        <?php echo esc_html__( 'Edit Course Module', 'lessonlms' ); ?>
-    </h2>
-    <form action="edit-module" method="post" data-nonce="<?php wp_create_nonce("edit-module-nonce"); ?>">
-        <label for="module-name"> Module Name</label>
-        <input type="text" id="module-name" name="module-name" value="<?php echo esc_html__( 'Module', 'lessonlms' ); ?>">
-    </form>
-</div>
