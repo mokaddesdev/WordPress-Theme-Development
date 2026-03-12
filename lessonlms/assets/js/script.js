@@ -94,6 +94,36 @@ jQuery(document).ready(function($){
     ]
     });
 
+       $('.course-add-to-cart').on('click', function(e){
+        e.preventDefault(); // prevent form submit reload
+
+        const $form = $(this).closest('form');
+        const product_id = $form.find('input[name="add-to-cart"]').val();
+        const quantity = 1;
+
+        $.ajax({
+            url: wc_add_to_cart_params.ajax_url,
+            type: 'POST',
+            data: {
+                action: 'woocommerce_add_to_cart',
+                product_id: product_id,
+                quantity: quantity,
+            },
+            success: function(response) {
+                if ( response.error && response.product_url ) {
+                    window.location = response.product_url;
+                    return;
+                }
+
+                // Trigger WC cart update
+                $(document.body).trigger('added_to_cart', [response.fragments, response.cart_hash, $form]);
+                console.log('added successfully');
+                alert("successfully added")
+            }
+        });
+
+    });
+
 
 //  Initial active tab
   $('.courses-tab').first().addClass('active');

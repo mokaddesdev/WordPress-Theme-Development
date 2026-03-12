@@ -4,17 +4,21 @@
  * Course Reviews System Function
  */
 
-function lessonlms_get_user_review($course_id, $user_id) {
-    $reviews = get_post_meta($course_id, '_course_reviews', true);
+if ( ! function_exists( 'lessonlms_get_user_review' ) ) {
+    function lessonlms_get_user_review( $course_id, $user_id ) {
+    $reviews  = get_post_meta( $course_id, '_course_reviews', true );
 
-    if (empty($reviews) || !is_array($reviews)) return false;
+    if ( empty( $reviews ) || ! is_array( $reviews ) ) {
+        return false;
+    }
 
-    foreach ($reviews as $review) {
+    foreach ( $reviews as $review ) {
         if (isset($review['user_id']) && intval($review['user_id']) === intval($user_id)) {
             return $review; 
         }
     }
     return false;
+}
 }
 
 

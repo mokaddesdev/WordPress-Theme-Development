@@ -33,8 +33,8 @@ function lessonlms_custome_lessons_register(){
         'capability_type'    => 'post',
         'has_archive'        => true,
         'hierarchical'       => false,
-        'menu_icon'          => 'dashicons-welcome-learn-more',
-        'menu_position'      => 70,
+        'menu_icon'          => 'dashicons-video-alt3',
+        'menu_position'      => 29,
         'supports'           => array( 'title', 'editor', 'author' ),
         'show_in_rest'       => false,
     );

@@ -34,7 +34,7 @@ function lessonlms_custome_courses_register(){
         'has_archive'        => true,
         'hierarchical'       => false,
         'menu_icon'          => 'dashicons-welcome-learn-more',
-        'menu_position'      => 20,
+        'menu_position'      => 27,
         'supports'           => array( 'title', 'editor', 'thumbnail', 'author' ),
         'taxonomies'         => array( 'course_category', 'course_level'),
         'show_in_rest'       => false,

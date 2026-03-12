@@ -112,17 +112,20 @@ if ( ! function_exists(  'lessonlms_lesson_meta_box_callback' ) ) {
 		?>
 
 		<div class="lesson-meta-box">
+			<?php
+			wp_nonce_field( 'lesson_meta_box', 'lesson_meta_box_nonce' );
+			?>
 			<div class="meta-box-left">
 
 				<p class="title">
 					<label class="label" for="select-course">
-						<?php esc_html__( 'Select Course', 'lessonlms' ); ?>
+						<?php echo esc_html__( 'Select Course', 'lessonlms' ); ?>
 						<span class="required">*</span>
 					</label>
 					<select class="select" name="_selected_course" id="select-course" required
 						data-nonce="<?php echo esc_attr( wp_create_nonce( 'select-course-nonce' ) ); ?>">
 						<option value="">
-							--- <?php esc_html__( 'Select Course', 'lessonlms' ); ?> ---
+							--- <?php echo esc_html__( 'Select Course', 'lessonlms' ); ?> ---
 						</option>
 
 						<?php if ( ! empty( $courses ) ) : ?>
@@ -133,7 +136,7 @@ if ( ! function_exists(  'lessonlms_lesson_meta_box_callback' ) ) {
 							<?php endforeach; ?>
 						<?php else : ?>
 							<option value="">
-								<?php esc_html_e( 'No course added with module', 'lessonlms' ); ?>
+								<?php echo esc_html__( 'No course added with module', 'lessonlms' ); ?>
 							</option>
 						<?php endif; ?>
 					</select>
@@ -142,12 +145,12 @@ if ( ! function_exists(  'lessonlms_lesson_meta_box_callback' ) ) {
 				<div class="show-module">
 					<p>
 					<label class="label" for="select-module">
-						<?php esc_html_e('Select Module', 'lessonlms'); ?>
+						<?php echo esc_html__('Select Module', 'lessonlms'); ?>
 						<!-- <span class="required">*</span> -->
 					</label>
 					<select class="select" name="_select_module" id="select-module" >
 						<option value="">
-							--- <?php esc_html_e('Select Module', 'lessonlms'); ?> ---
+							--- <?php echo esc_html__('Select Module', 'lessonlms'); ?> ---
 						</option>
 						<?php foreach ( $modules_for_course as $module ) : ?>
 							<option value="<?php echo esc_attr( $module->ID ); ?>" <?php selected( $selected_module, $module->ID ); ?>>
@@ -172,7 +175,7 @@ if ( ! function_exists(  'lessonlms_lesson_meta_box_callback' ) ) {
 			<div class="meta-box-right">
 				<p>
 					<label class="label" for="video-url">
-						<?php esc_html__( 'Video URL', 'lessonlms' ); ?>
+						<?php echo esc_html__( 'Video URL', 'lessonlms' ); ?>
 						<!-- <span class="required">*</span> -->
 					</label>
 					<input class="input-data" type="url" name="_video_url" id="video-url"
@@ -181,7 +184,7 @@ if ( ! function_exists(  'lessonlms_lesson_meta_box_callback' ) ) {
 
 				<p>
 					<label class="label" for="video_duration">
-						<?php esc_html__( 'Video Duration', 'lessonlms' ); ?>
+						<?php echo esc_html__( 'Video Duration', 'lessonlms' ); ?>
 					</label>
 					<input class="input-data" type="number" step="0.1" name="video_duration" id="video_duration"
 					value="<?php echo esc_attr( $video_duration ); ?>"/>

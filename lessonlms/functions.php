@@ -2831,4 +2831,5 @@ function lessonlms_enqueue_course_scripts() {
     wp_enqueue_style('lessonlms-course', get_template_directory_uri() . '/css/course.css', array(), '1.0');
 }
 add_action('wp_enqueue_scripts', 'lessonlms_enqueue_course_scripts');
+
 require_once THEME_DIR . '/inc/ajax-functions/ajax-function.php';

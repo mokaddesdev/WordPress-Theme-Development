@@ -14,8 +14,8 @@ if (! function_exists('lessonlms_add_course_module_in_admin')) {
             'manage_options',
             'courses_modules_slug',
             'lessonlms_add_module_callback',
-            'dashicons-welcome-learn-more',
-            35
+            'dashicons-category',
+            28
         );
     }
 }
