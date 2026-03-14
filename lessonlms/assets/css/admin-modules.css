@@ -1,3 +1,14 @@
+.lessonlms-view-btn{
+    display: inline-block;
+    padding: 6px 12px;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    border: none;
+    outline: none;
+    font-size: 13px;
+}
+
 /* Wrapper */
 .lessonlms-wrap {
     font-family: "Poppins", sans-serif;

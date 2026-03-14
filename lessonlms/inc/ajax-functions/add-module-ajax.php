@@ -76,8 +76,8 @@ function lessonlms_add_module_ajax()
                 <?php echo esc_html( $count ) ?>
             </td>
             <td>
-                <a href="<?php admin_url( 'admin.php?page=lessonlms_show_modules&course_id='.$course->ID ) ?>">
-                    <?php echo esc_html__( 'View Details', 'lessonlms' ); ?>
+               <a href="<?php echo esc_url( admin_url( 'admin.php?page=lessonlms_show_modules&course_id=' . $course->ID ) ); ?>">
+                <?php echo esc_html__( 'View Details', 'lessonlms' ); ?>
                 </a>
         </td>
     </tr>

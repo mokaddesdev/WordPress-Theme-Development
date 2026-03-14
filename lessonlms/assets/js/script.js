@@ -1,4 +1,19 @@
 jQuery(document).ready(function($){
+
+     const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        customClass: {
+            popup: 'custom-toast'
+        },
+        didOpen: (toast) => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+        }
+    });
     /*----- menu icon toggle -----*/
     $("#navPhone").hide();
     $(".menu-btn").click(function(){
@@ -128,12 +143,13 @@ jQuery(document).ready(function($){
         });
 
     });
+
 $(document).on("submit",".add-to-wishlist-form",function(e){
 
     e.preventDefault();
 
     const form = $(this);
-
+    const wishlistBtn = form.closest(".wishlist-btn");
     const nonce = form.find('[name="add_to_wishlist_nonce"]').val();
     const course_id = form.find('[name="course_id"]').val();
 
@@ -145,17 +161,41 @@ $(document).on("submit",".add-to-wishlist-form",function(e){
             add_to_wishlist_nonce: nonce,
             course_id: course_id
         },
+        beforeSend: function() {
+            wishlistBtn.html(`
+                <div class="cart-loading">
+                    <span class="span-loading">.....</span>
+                </div>
+            `);
+        },
         success:function(res){
 
             if(res.success){
-                alert(res.data);
+                Toast.fire({
+                        icon: 'success',
+                        title: res.data.msg,
+                    });
+                 wishlistBtn.html(res.data.html);
             }else{
-                alert(res.data);
+                 Toast.fire({
+                        icon: 'error',
+                        title: res.data,
+                    });
+                wishlistBtn.html(`
+                    <div class="add-to-wishlist active">
+                        <a href="<?php echo esc_url( home_url('/student-wishlist') ); ?>">
+                            <i class="fa-solid fa-heart"></i>
+                        </a>
+                    </div>
+                `);
             }
 
         },
         error:function(){
-            alert("Something went wrong");
+             Toast.fire({
+                        icon: 'error',
+                        title: "Something went wrong",
+                    });
         }
 
     });

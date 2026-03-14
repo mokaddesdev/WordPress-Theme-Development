@@ -28,11 +28,7 @@ jQuery(document).ready(function ($) {
         popup.find('.module_id').val(module_id);
         popup.find('.module_name').val(module_name);
 
-        if (module_status === 'enabled') {
-            popup.find('#module_status').prop('checked', true);
-        } else {
-            popup.find('#module_status').prop('checked', false);
-        }
+       popup.find(`#module_status_${module_id}`).prop('checked', module_status === 'enabled');
     });
 
     $('.table-wrapper').on('submit', '.edit-module-form', function (e) {
@@ -42,7 +38,8 @@ jQuery(document).ready(function ($) {
         const btn = form.find('.update-module');
         const module_id = form.find('.module_id').val();
         const module_name = form.find('.module_name').val();
-        const module_status = form.find('#module_status').is(':checked') ? 'enabled' : 'disabled';
+        const nonce = form.data('nonce');
+        const module_status = form.find(`#module_status_${module_id}`).is(':checked') ? 'enabled' : 'disabled';
 
         $.ajax({
 
@@ -51,6 +48,7 @@ jQuery(document).ready(function ($) {
 
             data: {
                 action: 'lessonlms_update_module_ajax',
+                edit_module_nonce : nonce,
                 module_id: module_id,
                 module_name: module_name,
                 module_status: module_status,

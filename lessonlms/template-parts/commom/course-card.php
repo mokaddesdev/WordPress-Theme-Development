@@ -36,6 +36,17 @@
         }
     }
 
+    $user_wishlists = get_user_meta( $user_id, '_add_to_wishlist', true );
+    $allready_has_wishlist = false;
+    if ( ! empty( $user_wishlists ) && is_array( $user_wishlists ) ) {
+        foreach( $user_wishlists as $wishlist ) {
+             if ( isset( $wishlist['course_id']) && intval( $wishlist['course_id']) === $single_id ) {
+            $allready_has_wishlist = true;
+            break;
+        }
+        }
+    }
+
     $image_html     = '';
     if ( has_post_thumbnail( $single_id ) ) {
         $image_html = get_the_post_thumbnail(
@@ -55,6 +66,7 @@
             <?php if ( $user_login ) : ?>
                 <!-- wishlist-btn -->
               <div class="wishlist-btn">
+                <?php if ( $allready_has_wishlist === false ) : ?>
                 <form method="post" class="add-to-wishlist-form">
                         <?php wp_nonce_field( 'add_to_wishlist', 'add_to_wishlist_nonce' ); ?>
                         <input type="hidden" name="course_id" value="<?php echo esc_attr( $single_id ); ?>">
@@ -64,6 +76,13 @@
                             <span class="tooltip-text">Add to Wishlist</span>
                         </button>
                     </form>
+                    <?php else : ?>
+                    <div class="add-to-wishlist active">
+                        <a href="<?php echo esc_url( home_url('/student-wishlist') ); ?>">
+                            <i class="fa-solid fa-heart"></i>
+                        </a>
+                    </div>
+                <?php endif;?>
                 </div>
 
                 <?php
@@ -71,6 +90,33 @@
                
                 ?>
                 <style>
+                    /* ======================= loading ================== */
+.cart-loading{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:8px 10px;
+    font-size:14px;
+    color:#555;
+}
+
+.cart-loading span{
+    width:16px;
+    height:16px;
+    border:2px solid #ddd;
+    border-top:2px solid #00aaff;
+    border-radius:50%;
+    animation:lessonlms-spin 0.6s linear infinite;
+}
+
+@keyframes lessonlms-spin{
+    from{
+        transform:rotate(0deg);
+    }
+    to{
+        transform:rotate(360deg);
+    }
+}
                     .wishlist-btn{
                         position: relative;
                         display: inline-block;
@@ -103,7 +149,7 @@
                 <!-- add-to-cart -->
                 <div class="add-to-cart">
                     <?php if ( $in_cart === false ) : ?>
-                    <form method="post">
+                    <form method="post" class="course-add-to-cart">
                         <input type="hidden" name="add-to-cart" value="<?php echo esc_attr( $course_product ); ?>">
                         <input type="hidden" name="course_id" value="<?php echo esc_attr( $single_id ); ?>">
                         <button type="submit" class="course-add-to-cart">

@@ -27,6 +27,7 @@ function lessonlms_theme_enqueue_styles()
     //Theme Style
     wp_enqueue_style('main-style', get_stylesheet_uri() );
     wp_enqueue_style( 'global-css' );
+    wp_enqueue_style( 'home-resp-css' );
 
     if ( is_front_page() || is_home() ) {
             wp_enqueue_style( 'home-css' );
