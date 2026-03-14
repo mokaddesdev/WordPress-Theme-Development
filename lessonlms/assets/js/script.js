@@ -109,6 +109,10 @@ jQuery(document).ready(function($){
                 product_id: product_id,
                 quantity: quantity,
             },
+            beforeSend: function() {
+                $(".img-add-to-cart-btn").html(`<div class="preloader-add-to-cart">
+                    <p></p> <span></span></div>`)
+            },
             success: function(response) {
                 if ( response.error && response.product_url ) {
                     window.location = response.product_url;
@@ -117,13 +121,46 @@ jQuery(document).ready(function($){
 
                 // Trigger WC cart update
                 $(document.body).trigger('added_to_cart', [response.fragments, response.cart_hash, $form]);
+                $(".img-add-to-cart-btn").html(data.msg.html);
                 console.log('added successfully');
                 alert("successfully added")
             }
         });
 
     });
+$(document).on("submit",".add-to-wishlist-form",function(e){
 
+    e.preventDefault();
+
+    const form = $(this);
+
+    const nonce = form.find('[name="add_to_wishlist_nonce"]').val();
+    const course_id = form.find('[name="course_id"]').val();
+
+    $.ajax({
+        url: lessonlms_ajax_review_obj.ajax_url,
+        method: "POST",
+        data:{
+            action: "lessonlmsadd_to_wishlist_ajax",
+            add_to_wishlist_nonce: nonce,
+            course_id: course_id
+        },
+        success:function(res){
+
+            if(res.success){
+                alert(res.data);
+            }else{
+                alert(res.data);
+            }
+
+        },
+        error:function(){
+            alert("Something went wrong");
+        }
+
+    });
+
+});
 
 //  Initial active tab
   $('.courses-tab').first().addClass('active');

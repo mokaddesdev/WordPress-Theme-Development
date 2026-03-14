@@ -2833,3 +2833,120 @@ function lessonlms_enqueue_course_scripts() {
 add_action('wp_enqueue_scripts', 'lessonlms_enqueue_course_scripts');
 
 require_once THEME_DIR . '/inc/ajax-functions/ajax-function.php';
+add_filter( 'woocommerce_is_sold_individually', '__return_true' );
+
+
+if ( ! function_exists( 'lessonlms_enroll_user_after_payment' ) ) {
+    function lessonlms_enroll_user_after_payment( $order_id ) {
+
+        $user_login = is_user_logged_in();
+        if ( ! $user_login ) {
+            return;
+        }
+
+        $order   = wc_get_order( $order_id );
+        $user_id = $order->get_user_id();
+
+        if ( ! $user_id ) {
+            return;
+        }
+
+        $enrollments = get_user_meta( $user_id, '_user_enrollments', true );
+
+        if ( empty( $enrollments ) || ! is_array( $enrollments ) ) {
+            $enrollments = [];
+        }
+
+        $all_items = $order->get_items();
+
+        if ( ! empty( $all_items ) && is_array( $all_items ) ) {
+            foreach ( $all_items as $item ) {
+
+                $product_id = $item->get_product_id();
+
+                $courses = get_posts([
+                    'post_type'   => 'courses',
+                    'meta_key'    => '_course_product',
+                    'meta_value'  => $product_id,
+                    'fields'      => 'ids',
+                    'numberposts' => 1,
+                ]);
+
+                if ( ! empty( $courses ) ) {
+                    $course_id = $courses[0]->ID;
+
+                    $already_enrolled = false;
+                    foreach ( $enrollments as $enroll ) {
+                        if ( intval( $enroll['course_id']) === $course_id ) {
+                            $already_enrolled = true;
+                            break;
+                        }
+                    }
+
+                    if ( ! $already_enrolled ) {
+
+                         $current_enroll   = get_post_meta( $course_id, '_enrolled_students', true ) ?: 0;
+                        $new_enroll_count = absint( $current_enroll + 1 );
+                        update_post_meta( $course_id, '_enrolled_students', $new_enroll_count );
+
+                        $enrollments[] = [
+                            'course_id' => $course_id,
+                            'order_id'  => $order_id,
+                            'date'      => current_time( 'mysql' ),
+                        ];
+                    }
+                }
+            }
+        }
+        update_user_meta( $user_id, '_user_enrollments', $enrollments );
+    }
+}
+
+add_action( 'woocommerce_payment_complete', 'lessonlms_enroll_user_after_payment' );
+add_action( 'woocommerce_order_status_completed', 'lessonlms_enroll_user_after_payment' );
+
+
+ if ( ! function_exists( 'lessonlmsadd_to_wishlist_ajax' ) ) {
+                    function lessonlmsadd_to_wishlist_ajax(){
+                        if ( ! isset( $_POST['add_to_wishlist_nonce'] ) || 
+     ! wp_verify_nonce( $_POST['add_to_wishlist_nonce'], 'add_to_wishlist' ) ) {
+    wp_send_json_error( 'Security check failed' );
+}
+
+                        if ( defined( 'DOING_AUTOSAVE') && DOING_AUTOSAVE ) {
+                            return;
+                        }
+                        $user_id = get_current_user_id();
+                        if ( $user_id == 0 ) {
+                            return;
+                        }
+
+                        if ( ! isset( $_POST['course_id'] ) ) {
+    wp_send_json_error( 'Invalid course' );
+}
+
+$course_id = absint( $_POST['course_id'] );
+                        $wishlists = get_user_meta( $user_id, '_add_to_wishlist', true );
+
+                        if ( ! is_array( $wishlists ) ) {
+                            $wishlists = [];
+                            }
+
+                        foreach( $wishlists as $wish ) {
+                            if ( intval( $wish['course_id'] ) === $course_id ) {
+                                wp_send_json_error( 'Already added' );
+                            }
+                        }
+
+                        $wishlists_update = array(
+                            'course_id' => $course_id,
+                            'date'      => current_time( 'mysql' ),
+                        );
+
+                        $wishlists[] = $wishlists_update;
+                        update_user_meta( $user_id, '_add_to_wishlist', $wishlists );
+                        wp_send_json_success( 'Added to wishlist' );
+                 }
+                }
+                add_action( 'wp_ajax_lessonlmsadd_to_wishlist_ajax', 'lessonlmsadd_to_wishlist_ajax' );
+                add_action( 'wp_ajax_nopriv_lessonlmsadd_to_wishlist_ajax', 'lessonlmsadd_to_wishlist_ajax' );

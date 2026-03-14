@@ -40,15 +40,15 @@ $selected_category = $_SESSION['selected_category'] ?? 0;
 
             <?php
             $args = array(
-                "post_type" => "courses",
-                'post_status' => 'publish',
+                "post_type"      => "courses",
+                'post_status'    => 'publish',
                 'orderby'        => 'date',
-                'order' => 'DESC',
+                'order'          => 'DESC',
                 'posts_per_page' => get_option('posts_per_page'),
-                'paged' => $paged,
+                'paged'     => $paged,
             );
             
-            $couses = new WP_Query($args);
+            $couses = new WP_Query( $args );
             
             if ($couses->have_posts()):
                 while ($couses->have_posts()): $couses->the_post();
