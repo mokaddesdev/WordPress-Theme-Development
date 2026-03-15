@@ -49,21 +49,24 @@ add_action( 'login_footer', 'lessonlms_login_footer' );
     include_once THEME_DIR . '/inc/submit-feedback.php'; 
 
     // Custom Post Types
-    include_once THEME_DIR . '/inc/cpt/courses.php';
-    include_once THEME_DIR . '/inc/cpt/testimonial.php';
-    include_once THEME_DIR . '/inc/cpt/lessons.php';
-    include_once THEME_DIR . '/inc/cpt/modules.php';
+    include_once THEME_DIR . '/inc/post-types/courses.php';
+    include_once THEME_DIR . '/inc/post-types/testimonial.php';
+    include_once THEME_DIR . '/inc/post-types/lessons.php';
+    include_once THEME_DIR . '/inc/post-types/modules.php';
    
 
     // Customizer
-    include_once THEME_DIR . '/inc/customizer.php';
-    include_once THEME_DIR . '/inc/customizer.php';
+    include_once THEME_DIR . '/inc/customizer/customizer.php';
 
     // Helpers
     include_once THEME_DIR . '/inc/helpers/number-format.php';
+    require_once THEME_DIR . '/inc/helpers/customizer-helpers.php';
+    
     include_once THEME_DIR . '/inc/helpers/image-structure.php';
     include_once THEME_DIR . '/inc/helpers/enroll-course-count.php';
     include_once THEME_DIR . '/inc/helpers/details-module-table.php';
+
+    require_once THEME_DIR . '/inc/ajax/ajax-function.php';
 /**
  * lessonlms start session with checking
  */
@@ -1694,7 +1697,9 @@ function lessonlms_enqueue_course_scripts() {
 }
 add_action('wp_enqueue_scripts', 'lessonlms_enqueue_course_scripts');
 
-require_once THEME_DIR . '/inc/ajax-functions/ajax-function.php';
+
+
+
 add_filter( 'woocommerce_is_sold_individually', '__return_true' );
 
 

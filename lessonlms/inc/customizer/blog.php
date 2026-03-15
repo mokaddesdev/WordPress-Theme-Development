@@ -1,53 +1,23 @@
-<?php 
-
+<?php
 /**
- * Blog Customizer
+ * Blog Customizer Settings
+ *
+ * @package lessonlms
  */
-function lessonlms_blog_customize_register($wp_customize) {
 
-  $wp_customize->add_section('blog_settings', array(
-      'title'=> __('Blog Settings','lessonlms'),
-      'priority' => 120,
-  ));
+if ( ! function_exists( 'lessonlms_blog_customize_register' ) ) {
+	function lessonlms_blog_customize_register( $wp_customize ) {
 
-  // Blog Section Title
-  $wp_customize->add_setting('blog_section_title',array(
-      'default'=> 'Our Blog',
-  ));
+		lessonlms_add_section_setting( $wp_customize, 'blog_settings', 'Blog Settings', 120 );
 
-  $wp_customize->add_control('blog_section_title',array(
-      'label'=> __('Blog Section Title','lessonlms'),
-      'section'=> 'blog_settings',
-      'type'=> 'text',
-  ));
+        lessonlms_text_field_customize( $wp_customize, 'blog_section_title', 'Our Blog', 'Blog Section Title', 'blog_settings' );
 
-  // Blog Section Description
-  $wp_customize->add_setting('blog_section_description',array(
-      'default'=> 'Read our regular travel blog and know the latest update of tour and travel',
-  ));
+        lessonlms_textarea_field_customize( $wp_customize, 'blog_section_description', 'Read our regular travel blog and know the latest update of tour and travel', 'Blog Section Description', 'blog_settings' );
+        
+        lessonlms_text_field_customize( $wp_customize, 'blog_button_text', 'See Blogs', 'Blog Button Text', 'blog_settings' );
 
-  $wp_customize->add_control('blog_section_description',array(
-      'label'=> __('Blog Section Description','lessonlms'),
-      'section'=> 'blog_settings',
-      'type'=> 'textarea',
-  ));
-
-    $wp_customize->add_setting('blog_button_text' ,array(
-        'default' => 'See Blogs',
-    ));
-    $wp_customize->add_control('blog_button_text',array(
-        'label' => __('Blog Button Text', 'lessonlms'),
-        'section' => 'blog_settings',
-         'type' => 'text',
-    ));
-
-       $wp_customize->add_setting('blog_button_url' ,array(
-        'default' => 'http://localhost/wordpress/index.php/blog/',
-    ));
-    $wp_customize->add_control('blog_button_url',array(
-        'label' => __('Blog Button URL', 'lessonlms'),
-        'section' => 'blog_settings',
-         'type' => 'url',
-    ));
+        lessonlms_url_field_customize( $wp_customize, 'blog_button_url', home_url( '/blog/' ), 'Blog Button URL', 'blog_settings' );
+	}
 }
-add_action('customize_register','lessonlms_blog_customize_register');
+
+add_action( 'customize_register', 'lessonlms_blog_customize_register' );

@@ -5,7 +5,7 @@
 * @package lessonlms
 */
 $footer_text        = get_theme_mod( 'footer_about_text', 'Need to help for your dream Career? trust us. With Lesson, study becomes a lot easier with us.' );
-$footer_logo        = get_theme_mod( 'footer_logo', get_template_directory_uri() .'/assets/images/footer-logo.png');
+$footer_logo        = get_theme_mod( 'footer_logo', THEME_URI .'/assets/images/footer-logo.png');
 $footer_menu1_title = get_theme_mod( 'footer_menu1_title','Company' );
 $footer_menu2_title = get_theme_mod( 'footer_menu2_title','Services' );
 
@@ -120,8 +120,8 @@ $footer_phone_des   = get_theme_mod( 'footer_phone_description', '+ 000 1234 567
                             <?php if ( $footer_phone_title ) :?>
                             <strong><?php echo esc_html( $footer_phone_title );?></strong>
                             <?php endif;?>
-                            <?php if ( $footer_phone_description ) :?>
-                            <?php echo esc_html( $footer_phone_description );?>
+                            <?php if ( $footer_phone_des ) :?>
+                            <?php echo esc_html( $footer_phone_des );?>
                             <?php endif;?>
                         </span>
                     </a>

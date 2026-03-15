@@ -1,34 +1,20 @@
 <?php 
 /**
- * course section customizer
+ * Courses Section Settings
+ *
+ * @package lessonlms
  */
 
-function lessonlms_courses_customize_register($wp_customize) {
- $wp_customize->add_section('course_settings', array(
-      'title'=> __('Course Settings','lessonlms'),
-      'priority' => 60,
-  ));
+if ( ! function_exists( 'lessonlms_courses_customize_register' ) ) {
+    function lessonlms_courses_customize_register( $wp_customize ) {
 
-  // Courses Section Title
-  $wp_customize->add_setting('course_section_title',array(
-      'default'=> 'Our popular courses',
-  ));
+        lessonlms_add_section_setting( $wp_customize, 'course_settings', 'Popular Course Settings', 60 );
 
-  $wp_customize->add_control('course_section_title',array(
-      'label'=> __('Course Section Title','lessonlms'),
-      'section'=> 'course_settings',
-      'type'=> 'text',
-  ));
+        lessonlms_text_field_customize( $wp_customize, 'course_section_title', 'Our popular courses', 'Course Section Title', 'course_settings' );
 
-  // Courses Section Description
-  $wp_customize->add_setting('course_section_description',array(
-      'default'=> 'Build new skills with new trendy courses and shine for the next future career.',
-  ));
+        lessonlms_textarea_field_customize( $wp_customize, 'course_section_description', 'Build new skills with new trendy courses and shine for the next future career.', 'Course Section Description', 'course_settings' );
 
-  $wp_customize->add_control('course_section_description',array(
-      'label'=> __('Course Section Description','lessonlms'),
-      'section'=> 'course_settings',
-      'type'=> 'textarea',
-  ));
-  }
-add_action('customize_register','lessonlms_courses_customize_register');
+        }
+    }
+
+add_action( 'customize_register', 'lessonlms_courses_customize_register' );
